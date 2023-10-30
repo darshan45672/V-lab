@@ -9,8 +9,8 @@ function varinit() {
   //Variable slider and number input types
   $("#massSlider").slider("value", 25); // slider initialisation : jQuery widget
   $("#massSpinner").spinner("value", 25); // number initialisation : jQuery widget
-  $("#lengthSlider").slider("value", 1500);
-  $("#lengthSpinner").spinner("value", 1500);
+  $("#lengthSlider").slider("value", 0);
+  $("#lengthSpinner").spinner("value", 0);
   $("#dampSlider").slider("value", 0.05);
   $("#dampSpinner").spinner("value", 0.05);
   $("#CsArea").spinner("value", 0.01);
@@ -34,8 +34,8 @@ function varchange() {
     varchange();
   });
 
-  $("#lengthSlider").slider({ max: 3000, min: 1000, step: 10 });
-  $("#lengthSpinner").spinner({ max: 3000, min: 1000, step: 10 });
+  $("#lengthSlider").slider({ max: 3000, min: 0, step: 10 });
+  $("#lengthSpinner").spinner({ max: 3000, min: 0, step: 10 });
 
   $("#lengthSlider").on("slide", function (e, ui) {
     $("#lengthSpinner").spinner("value", ui.value);
@@ -54,8 +54,8 @@ function varchange() {
     varchange();
   });
 
-  $("#dampSlider").slider({ max: 0.99, min: 0, step: 0.01 });
-  $("#dampSpinner").spinner({ max: 0.99, min: 0, step: 0.01 });
+  $("#dampSlider").slider({ max: 50, min: 0, step: 10 });
+  $("#dampSpinner").spinner({ max: 50, min: 0, step: 10 });
 
   $("#dampSlider").on("slide", function (e, ui) {
     $("#dampSpinner").spinner("value", ui.value);
