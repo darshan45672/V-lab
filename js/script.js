@@ -55,7 +55,7 @@ function varchange() {
   });
 
   $("#dampSlider").slider({ max: 50, min: 0, step: 10 });
-  $("#dampSpinner").spinner({ max: 50, min: 0, step: 10~ });
+  $("#dampSpinner").spinner({ max: 50, min: 0, step: 10 });
 
   $("#dampSlider").on("slide", function (e, ui) {
     $("#dampSpinner").spinner("value", ui.value);
