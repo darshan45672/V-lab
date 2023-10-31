@@ -1,3 +1,11 @@
+.button{
+  height: 40px;
+  width: 300px;
+  font-size: 15px;
+  border: 1px solid black;
+  text-align: center;
+}
+
 .title-div-container {
   width: 100%;
   height: 100%;
@@ -222,7 +230,7 @@
   border: 1px solid var(--clr-title-background);
   background-color: #fff;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1fr);
   gap: 0;
   flex-wrap: wrap;
   flex-direction: row;
@@ -310,7 +318,7 @@
 }
 .settings-sections {
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
   /* border: 0.1rem solid #777; */
   /* padding: 0 1rem; */
   /* gap: 1rem; */
@@ -318,7 +326,7 @@
 
 .variables-sections,
 .control-sections {
-  padding: 1rem 1rem 2rem 1rem;
+  padding: 50px 1rem 50px 1rem;
   /* border: 1px solid var(--clr-title-background);
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem; */

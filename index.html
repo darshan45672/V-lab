@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Solve Working of fuse</title>
+    <title>SOLVE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -42,7 +42,7 @@
         <div class="logo-div">
           <a href="#"><img src="images/nitk.svg" alt="Logo" class="logo" /></a>
         </div>
-        <h1>Working of Fuse</h1>
+        <h1>Battery and Fuse</h1>
       </div>
     </div>
     <div class="container">
@@ -64,7 +64,7 @@
                   d="M3 8.25V18a2.25 2.25 0 002.25 2.25h13.5A2.25 2.25 0 0021 18V8.25m-18 0V6a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 6v2.25m-18 0h18M5.25 6h.008v.008H5.25V6zM7.5 6h.008v.008H7.5V6zm2.25 0h.008v.008H9.75V6z"
                 />
               </svg>
-              <span>Simulations</span></a
+              <span>Simulation</span></a
             >
           </li>
           <li class="tool-list">
@@ -127,63 +127,25 @@
               <div class="graph-div display-hide">
                 <canvas id="graphscreen1" class="canvas"></canvas>
               </div>
-              <div class="graph-div display-hide">
+              <!-- <div class="graph-div display-hide">
                 <canvas id="graphscreen2" class="canvas"></canvas>
-              </div>
+              </div> -->
             </div>
           </div>
           <div id="variables" class="main__task-div">
             <div class="settings-sections">
               <h3 class="task-title">Variables</h3>
                 <div class="variables-sections">
-
-                <!-- <div class="var-div">
-                  <label for="materials">Materials</label>
-                  <select
-                    class="var-select select-menu"
-                    name="materials"
-                    id="materials"
-                  >
-                    <option class="select-menu" value="0">Alloy of Lead and Tin</option>
-                    <option class="select-menu" value="1">Aluminium</option>
-                    <option class="select-menu" value="2">Copper</option>
-                    <option class="select-menu" value="2">Iron</option>
-                  </select>
-                </div> -->
-                
-                <!-- <div class="var-div">
-                  <label for="sections">Area of Cross Section</label>
-                  <select
-                    class="var-select select-menu"
-                    name="sections"
-                    id="sections"
-                  >
-                    <option class="select-menu" value="0">I section</option>
-                    <option class="select-menu" value="1">T section</option>
-                    <option class="select-menu" value="2">C section</option>
-                    <option class="select-menu" value="3">L section</option>
-                    <option class="select-menu" value="4">Square section</option>
-                    <option class="select-menu" value="5">
-                      Circular section
-                    </option>
-                    <option class="select-menu" value="6">Other section</option>
-                  </select>
-                </div> -->
                 <div class="var-div">
-                  <label for="lengthSpinner">Resistance (R)</label>
-                  <input class="var-spinner" id="lengthSpinner" name="value"  />
+                  <label for="lengthSpinner">Resistor (ohms):</label>
+                  <input class="var-spinner" id="lengthSpinner" name="value" />
                   <div class="var-slider" id="lengthSlider"></div>
                 </div>
                 <div class="var-div">
-                  <label for="dampSpinner">Voltage (V)</label>
-                  <input class="var-spinner" id="dampSpinner" name="value" />
-                  <div class="var-slider" id="dampSlider"></div>
-                </div>
-                <!-- <div class="var-div">
-                  <label for="massSpinner">End Mass(kg)</label>
+                  <label for="massSpinner">Voltage (V)</label>
                   <input class="var-spinner" id="massSpinner" name="value" />
                   <div class="var-slider" id="massSlider"></div>
-                </div> -->
+                </div>
               </div>
             </div>
           </div>
@@ -193,11 +155,12 @@
               <div class="settings-sections">
                 <div class="control-sections">
 
-                 <!-- <button style="width:30%;">Add to table</button> -->
+                <!-- <button style="width:30%;">Add to table</button>
 			
-                <img id="playpausebutton" style="width:40px;" onclick="simstate()" src="./images/blueplaydull.svg" alt="" />
-                <!-- <img id="graphbutton" style="width:40px;" onclick="plotgraph()" src="./images/graphbutton.svg" alt="" /> -->
-              
+            <img id="playpausebutton" style="width:40px;" onclick="simstate()" src="./images/blueplaydull.svg" alt="" />
+                <img id="graphbutton" style="width:40px;" onclick="plotgraph()" src="./images/graphbutton.svg" alt="" />
+              -->
+              <button class="button">Check</button> <button class="button">Simulate</button>
          
                 </div>
               </div>
@@ -207,14 +170,11 @@
             <h3 class="task-title">Results</h3>
               <div class="settings-sections">
                 <div class="control-sections">
-
-                  <p id="p1"><span id="mass"></span></p>
-                  <!-- <p id="p2">k = <span id="k"></span></p>
-                  <p id="p3">c = <sapn id="c"></span></p> -->
-                    <!-- <div id="omegavalues">
-                      <p>&#969;<sub>n</sub> = <span id="wn"></span></p>
-                      <p>&#969;<sub>d</sub> = <span id="wd"></span></p> 
-                    </div> -->
+                  <p id="p1">Resistance = <span id="mass"></span></p>
+                  <p id="p2">Voltage = <span id="k"></span></p>
+                  <p id="p3">Current = <sapn id="c"></span></p>
+            
+                    
                 </div>
               </div>
           </div>

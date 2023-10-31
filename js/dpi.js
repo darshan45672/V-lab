@@ -36,7 +36,7 @@ const showTooltip = function (e) {
 // canvas.style.height = rect.height + "px";
 
 //get the canvas, canvas context, and dpi
-let canvas = document.getElementById("myCanvas"),
+ canvas = document.getElementById("myCanvas"),
   ctx = canvas.getContext("2d"),
   dpi = window.devicePixelRatio;
 function fix_dpi() {
