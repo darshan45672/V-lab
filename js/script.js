@@ -15,7 +15,7 @@ const canvas1 = document.querySelector("#graphscreen1");
 const ctx1 = canvas.getContext("2d");
 //start edit
 const img1 =new Image();
-img1.src = 'circuit2.png';
+img1.src = 'circuit4.png';
 img1.onload = function(){
   const newWidth=280;
   const newHeight=180;
