@@ -22,7 +22,6 @@ img1.onload = function(){
   ctx1.drawImage(img1,90,-10,newWidth,newHeight);
 };
 
-
 //edited*/
 
 //Initialise system parameters here
