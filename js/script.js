@@ -2,23 +2,34 @@
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
+//start edit
+const img =new Image();
+img.src = 'battery1.png';
+img.onload = function(){
+  const newWidth=530;
+  const newHeight=350;
+  ctx.drawImage(img,-50,25,newWidth,newHeight);
+};
+
+
+//edited*/
 
 //Initialise system parameters here
 function varinit() {
   varchange();
   //Variable slider and number input types
-  $("#massSlider").slider("value", 25); // slider initialisation : jQuery widget
-  $("#massSpinner").spinner("value", 25); // number initialisation : jQuery widget
-  $("#lengthSlider").slider("value", 0);
-  $("#lengthSpinner").spinner("value", 0);
+  $("#massSlider").slider("value", 0.05); // slider initialisation : jQuery widget
+  $("#massSpinner").spinner("value", 0.05); // number initialisation : jQuery widget
+  $("#lengthSlider").slider("value", 0.01);
+  $("#lengthSpinner").spinner("value", 0.01);
   $("#dampSlider").slider("value", 0.05);
   $("#dampSpinner").spinner("value", 0.05);
   $("#CsArea").spinner("value", 0.01);
   $("#Ivalue").spinner("value", 0.01);
 }
 function varchange() {
-  $("#massSlider").slider({ max: 200, min: 0, step: 0.5 });
-  $("#massSpinner").spinner({ max: 200, min: 0, step: 0.5 });
+  $("#massSlider").slider({ max: 610, min: 0, step: 10 });
+  $("#massSpinner").spinner({ max: 610, min: 0, step: 10 });
 
   $("#massSlider").on("slide", function (e, ui) {
     $("#massSpinner").spinner("value", ui.value);
@@ -34,8 +45,8 @@ function varchange() {
     varchange();
   });
 
-  $("#lengthSlider").slider({ max: 3000, min: 0, step: 10 });
-  $("#lengthSpinner").spinner({ max: 3000, min: 0, step: 10 });
+  $("#lengthSlider").slider({ max: 51, min: 0, step: 1 });
+  $("#lengthSpinner").spinner({ max: 51, min: 0, step: 1 });
 
   $("#lengthSlider").on("slide", function (e, ui) {
     $("#lengthSpinner").spinner("value", ui.value);
@@ -54,8 +65,8 @@ function varchange() {
     varchange();
   });
 
-  $("#dampSlider").slider({ max: 50, min: 0, step: 10 });
-  $("#dampSpinner").spinner({ max: 50, min: 0, step: 10 });
+ $("#dampSlider").slider({ max: 0.99, min: 0, step: 0.01 });
+  $("#dampSpinner").spinner({ max: 0.99, min: 0, step: 0.01 });
 
   $("#dampSlider").on("slide", function (e, ui) {
     $("#dampSpinner").spinner("value", ui.value);
@@ -76,9 +87,9 @@ function varchange() {
 function varupdate() {
   $("#massSpinner").spinner("value", $("#massSlider").slider("value")); //updating slider location with change in spinner(debug)
   $("#lengthSpinner").spinner("value", $("#lengthSlider").slider("value"));
-  $("#dampSpinner").spinner("value", $("#dampSlider").slider("value"));
+$("#dampSpinner").spinner("value", $("#dampSlider").slider("value"));
   endmass = $("#massSpinner").spinner("value"); //Updating variables
-  beamlength = $("#lengthSpinner").spinner("value");
+ beamlength = $("#lengthSpinner").spinner("value");
   dampingratio = $("#dampSpinner").spinner("value");
 
  };
