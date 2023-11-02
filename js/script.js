@@ -1,3 +1,5 @@
+var simStat = 0;
+let check = 1;
 
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
@@ -43,6 +45,9 @@ function varinit() {
   document.getElementById('voltage').innerHTML = 0;
   document.getElementById('resistance').innerHTML = 0;
   document.getElementById('current').innerHTML = 0;
+
+  sliderDisable();
+
 }
 function varchange() {
   $("#voltageSlider").slider({ max: 300, min: 0, step: 10 });
@@ -111,14 +116,85 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   
   if (res === 0){
     document.getElementById('current').innerHTML = 0;
+    document.getElementById('resultMessage').innerHTML = "";
   }else{
-    document.getElementById('current').innerHTML = (volt/res);
+    if ((volt/res)>=thres) {
+      document.getElementById('current').innerHTML = (volt/res);
+      document.getElementById('resultMessage').innerHTML = "The fuse breaks as the maximum allowable current is exceeded";
+    }
+    else{
+      document.getElementById('current').innerHTML = (volt/res);
+      document.getElementById('resultMessage').innerHTML = "";
+    }
   }
   document.getElementById('voltage').innerHTML = volt;
   document.getElementById('resistance').innerHTML = res;
   
  };
 
+ function sliderDisable() {
+  if(!simStat)  {
+    $('#voltageSlider').slider("disable"); 
+    $('#voltageSpinner').spinner("disable");
+    $('#resistorSlider').slider("disable"); 
+    $('#thresholdSlider').slider("disable"); 
+    $('#resistorSpinner').spinner("disable"); 
+    $('#thresholdSpinner').spinner("disable"); 
+    document.getElementById('message').innerHTML = "Complete the circuit connection"
+  }
+ }
+ function checkEnable() {
+  if(check)  {
+    // console.log("working");
+    alert('Circuit connection is correct ')
+    $('#voltageSlider').slider("disable"); 
+    $('#voltageSpinner').spinner("disable");
+    $('#resistorSlider').slider("disable"); 
+    $('#resistorSpinner').spinner("disable"); 
+    $('#thresholdSlider').slider("enable"); 
+    $('#thresholdSpinner').spinner("enable"); 
+    
+    check = 0
+    
+    document.getElementById('message').innerHTML = "Set the threshold current and click on simulate button"
+    }
+  }
 
+  function setThreshold() {
+    if(simStat = 1)  {
+      // console.log("working");
+      $('#voltageSlider').slider("disable"); 
+      $('#voltageSpinner').spinner("disable");
+      $('#resistorSlider').slider("disable"); 
+      $('#resistorSpinner').spinner("disable"); 
+      $('#thresholdSlider').slider("enable"); 
+      $('#thresholdSpinner').spinner("enable"); 
+      
+      document.getElementById('message').innerHTML = "Set the threshold current and click on simulate button"
+      }
+    }
+  
+  function parametreSliderEnable() {
+    if(simStat = 1)  {
+      console.log("working");
+      $('#voltageSlider').slider("enable"); 
+      $('#voltageSpinner').spinner("enable");
+      $('#resistorSlider').slider("enable"); 
+      $('#resistorSpinner').spinner("enable"); 
+      $('#thresholdSlider').slider("disable"); 
+      $('#thresholdSpinner').spinner("disable"); 
+    }
+    document.getElementById('message').innerHTML = "Vary the parameters and see the Result"
+  }
+ 
+//  if(simStat)
+//  {
+//  $('#thetaslider').slider("enable"); 
+//  $('#thetaspinner').spinner("enable");
+//  $('#omegaslider').slider("disable"); 
+//  $('#omegaspinner').spinner("disable"); 
+//  theta=$('#thetaspinner').spinner("value");
+//  printcomment("Centre at "+theta+"&deg;  Position = "+roundd(-b.ycoord+o.ycoord-r,2)+"cm<br>Vel = "+roundd(-vel,2)+"cm/s  Acc = "+roundd(-acc,2)+"cm/s^2<br>Jerk = "+roundd(-jerk,2)+"cm/s^3",2);
+//  }
 
 window.addEventListener("load", varinit);
