@@ -123,7 +123,7 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
       document.getElementById('resultMessage').innerHTML = "The fuse breaks as the maximum allowable current is exceeded";
     }
     else{
-      document.getElementById('current').innerHTML = (volt/res);
+      document.getElementById('current').innerHTML = (volt/res).toFixed(4);
       document.getElementById('resultMessage').innerHTML = "";
     }
   }
