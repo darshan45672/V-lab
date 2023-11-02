@@ -28,80 +28,93 @@ img1.onload = function(){
 function varinit() {
   varchange();
   //Variable slider and number input types
-  $("#massSlider").slider("value", 0.05); // slider initialisation : jQuery widget
-  $("#massSpinner").spinner("value", 0.05); // number initialisation : jQuery widget
-  $("#lengthSlider").slider("value", 0.01);
-  $("#lengthSpinner").spinner("value", 0.01);
-  $("#dampSlider").slider("value", 0.05);
-  $("#dampSpinner").spinner("value", 0.05);
+  $("#voltageSlider").slider("value", 0.05); // slider initialisation : jQuery widget
+  $("#voltageSpinner").spinner("value", 0.05); // number initialisation : jQuery widget
+  $("#resistorSlider").slider("value", 0.01);
+  $("#resistorSpinner").spinner("value", 0.01);
+  $("#thresholdSlider").slider("value", 0.05);
+  $("#thresholdSpinner").spinner("value", 0.05);
   $("#CsArea").spinner("value", 0.01);
   $("#Ivalue").spinner("value", 0.01);
+
+  var votlageDisplay = document.getElementById('voltage');
+  var resistanceDisplay = document.getElementById('resistance');
+  
+  document.getElementById('voltage').innerHTML = 0;
+  document.getElementById('resistance').innerHTML = 0;
+  document.getElementById('current').innerHTML = 0;
 }
 function varchange() {
-  $("#massSlider").slider({ max: 610, min: 0, step: 10 });
-  $("#massSpinner").spinner({ max: 610, min: 0, step: 10 });
+  $("#voltageSlider").slider({ max: 300, min: 0, step: 10 });
+  $("#voltageSpinner").spinner({ max: 300, min: 0, step: 10 });
 
-  $("#massSlider").on("slide", function (e, ui) {
-    $("#massSpinner").spinner("value", ui.value);
+  $("#voltageSlider").on("slide", function (e, ui) {
+    $("#voltageSpinner").spinner("value", ui.value);
     time = 0;
     varupdate();
   });
-  $("#massSpinner").on("spin", function (e, ui) {
-    $("#massSlider").slider("value", ui.value);
+  $("#voltageSpinner").on("spin", function (e, ui) {
+    $("#voltageSlider").slider("value", ui.value);
     time = 0;
     varupdate();
   });
-  $("#massSpinner").on("change", function () {
+  $("#voltageSpinner").on("change", function () {
     varchange();
   });
 
-  $("#lengthSlider").slider({ max: 51, min: 0, step: 1 });
-  $("#lengthSpinner").spinner({ max: 51, min: 0, step: 1 });
+  $("#resistorSlider").slider({ max: 200, min: 0, step: 1 });
+  $("#resistorSpinner").spinner({ max: 200, min: 0, step: 1 });
 
-  $("#lengthSlider").on("slide", function (e, ui) {
-    $("#lengthSpinner").spinner("value", ui.value);
+  $("#resistorSlider").on("slide", function (e, ui) {
+    $("#resistorSpinner").spinner("value", ui.value);
     time = 0;
     varupdate();
   });
-  $("#lengthSpinner").on("spin", function (e, ui) {
-    $("#lengthSlider").slider("value", ui.value);
+  $("#resistorSpinner").on("spin", function (e, ui) {
+    $("#resistorSlider").slider("value", ui.value);
     time = 0;
     varupdate();
   });
-  $("#lengthSpinner").on("change", function () {
+  $("#resistorSpinner").on("change", function () {
     varchange();
   });
-  $("#lengthSpinner").on("touch-start", function () {
+  $("#resistorSpinner").on("touch-start", function () {
     varchange();
   });
 
- $("#dampSlider").slider({ max: 0.99, min: 0, step: 0.01 });
-  $("#dampSpinner").spinner({ max: 0.99, min: 0, step: 0.01 });
+ $("#thresholdSlider").slider({ max: 50, min: 0, step: 0.5 });
+  $("#thresholdSpinner").spinner({ max: 50, min: 0, step: 0.5 });
 
-  $("#dampSlider").on("slide", function (e, ui) {
-    $("#dampSpinner").spinner("value", ui.value);
+  $("#thresholdSlider").on("slide", function (e, ui) {
+    $("#thresholdSpinner").spinner("value", ui.value);
     time = 0;
     varupdate();
   });
-  $("#dampSpinner").on("spin", function (e, ui) {
-    $("#dampSlider").slider("value", ui.value);
+  $("#thresholdSpinner").on("spin", function (e, ui) {
+    $("#thresholdSlider").slider("value", ui.value);
     time = 0;
     varupdate();
   });
-  $("#dampSpinner").on("change", function () {
+  $("#thresholdSpinner").on("change", function () {
     varchange();
   });
   $("#CsArea").spinner({ max: 1, min: 0.01, step: 0.0001 });
   $("#Ivalue").spinner({ max: 1, min: 0.01, step: 0.0001 });
 }
 function varupdate() {
-  $("#massSpinner").spinner("value", $("#massSlider").slider("value")); //updating slider location with change in spinner(debug)
-  $("#lengthSpinner").spinner("value", $("#lengthSlider").slider("value"));
-$("#dampSpinner").spinner("value", $("#dampSlider").slider("value"));
-  endmass = $("#massSpinner").spinner("value"); //Updating variables
- beamlength = $("#lengthSpinner").spinner("value");
-  dampingratio = $("#dampSpinner").spinner("value");
+  $("#voltageSpinner").spinner("value", $("#voltageSlider").slider("value")); //updating slider location with change in spinner(debug)
+  $("#resistorSpinner").spinner("value", $("#resistorSlider").slider("value"));
+$("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
+  volt = $("#voltageSpinner").spinner("value"); //Updating variables
+  res = $("#resistorSpinner").spinner("value");
+  thres = $("#thresholdSpinner").spinner("value");
 
+  var votlageDisplay = document.getElementById('voltage');
+  var resistanceDisplay = document.getElementById('resistance');
+  
+  document.getElementById('voltage').innerHTML = volt;
+  document.getElementById('resistance').innerHTML = res;
+  document.getElementById('current').innerHTML = (volt/res);
  };
 
 
