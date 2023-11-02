@@ -138,14 +138,19 @@
               <h3 class="task-title">Variables</h3>
                 <div class="variables-sections">
                 <div class="var-div">
-                  <label for="lengthSpinner">Resistor (ohms):</label>
-                  <input class="var-spinner" id="lengthSpinner" name="value" />
-                  <div class="var-slider" id="lengthSlider"></div>
+                  <label for="voltageSpinner">Voltage (V)</label>
+                  <input class="var-spinner" id="voltageSpinner" name="value" />
+                  <div class="var-slider" id="voltageSlider"></div>
                 </div>
                 <div class="var-div">
-                  <label for="massSpinner">Voltage (V)</label>
-                  <input class="var-spinner" id="massSpinner" name="value" />
-                  <div class="var-slider" id="massSlider"></div>
+                  <label for="resistorSpinner">Resistor (ohms):</label>
+                  <input class="var-spinner" id="resistorSpinner" name="value" />
+                  <div class="var-slider" id="resistorSlider"></div>
+                </div>
+                <div class="var-div">
+                  <label for="thresholdSpinner">Threshold Current (mA)</label>
+                  <input class="var-spinner" id="thresholdSpinner" name="value" />
+                  <div class="var-slider" id="thresholdSlider"></div>
                 </div>
               </div>
             </div>
@@ -171,9 +176,9 @@
             <h3 class="task-title">Results</h3>
               <div class="settings-sections">
                 <div class="control-sections">
-                  <p id="p1">Resistance = <span id="mass"></span></p>
-                  <p id="p2">Voltage = <span id="k"></span></p>
-                  <p id="p3">Current = <sapn id="c"></span></p>
+                  <p id="p1">Resistance = <span id="resistance"></span> ohms</p>
+                  <p id="p2">Voltage = <span id="voltage"></span> V</p>
+                  <p id="p3">Current = <sapn id="current"></span> mA</p>
             
                     
                 </div>
