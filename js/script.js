@@ -108,13 +108,15 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   volt = $("#voltageSpinner").spinner("value"); //Updating variables
   res = $("#resistorSpinner").spinner("value");
   thres = $("#thresholdSpinner").spinner("value");
-
-  var votlageDisplay = document.getElementById('voltage');
-  var resistanceDisplay = document.getElementById('resistance');
   
+  if (res === 0){
+    document.getElementById('current').innerHTML = 0;
+  }else{
+    document.getElementById('current').innerHTML = (volt/res);
+  }
   document.getElementById('voltage').innerHTML = volt;
   document.getElementById('resistance').innerHTML = res;
-  document.getElementById('current').innerHTML = (volt/res);
+  
  };
 
 
