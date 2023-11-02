@@ -166,7 +166,10 @@
             <img id="playpausebutton" style="width:40px;" onclick="simstate()" src="./images/blueplaydull.svg" alt="" />
                 <img id="graphbutton" style="width:40px;" onclick="plotgraph()" src="./images/graphbutton.svg" alt="" />
               -->
-              <button class="button">Check</button> <button class="button">Simulate</button>
+              <button class="button" onclick="checkEnable()">Check</button> 
+              <button class="button" onclick=" setThreshold()">Reset Threshold Current</button>
+              <button class="button" onclick=" parametreSliderEnable()">Simulate</button>
+              <p id="message" style="text-align: center; margin-top: 20px;"></p>
          
                 </div>
               </div>
@@ -179,7 +182,7 @@
                   <p id="p1">Resistance = <span id="resistance"></span> ohms</p>
                   <p id="p2">Voltage = <span id="voltage"></span> V</p>
                   <p id="p2">Current = <span id="current"></span> mA</p>
-                  <!-- <p id="p3">Current = <sapn id=""></span> mA</p> -->
+                  <p id="p3"><sapn id="resultMessage"></span></p>
                 </div>
               </div>
           </div>
