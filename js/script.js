@@ -45,6 +45,7 @@ function varinit() {
   document.getElementById('voltage').innerHTML = 0;
   document.getElementById('resistance').innerHTML = 0;
   document.getElementById('current').innerHTML = 0;
+  document.getElementById('threshold').innerHTML = 0;
 
   sliderDisable();
 
@@ -129,6 +130,7 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   }
   document.getElementById('voltage').innerHTML = volt;
   document.getElementById('resistance').innerHTML = res;
+  document.getElementById('threshold').innerHTML = thres;
   
  };
 
@@ -161,6 +163,11 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   }
 
   function setThreshold() {
+    if (check) {
+      alert('complete the circuit connection')
+      return;
+    }
+
     if(simStat = 1)  {
       // console.log("working");
       $('#voltageSlider').slider("disable"); 
@@ -175,6 +182,10 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
     }
   
   function parametreSliderEnable() {
+    if (check) {
+      alert('complete the circuit connection')
+      return;
+    }
     if(simStat = 1)  {
       console.log("working");
       $('#voltageSlider').slider("enable"); 
