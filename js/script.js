@@ -8,9 +8,9 @@ const ctx = canvas.getContext("2d");
 const img =new Image();
 img.src = 'battery1.png';
 img.onload = function(){
-  const newWidth=530;
-  const newHeight=350;
-  ctx.drawImage(img,-50,25,newWidth,newHeight);
+  const newWidth=400;
+  const newHeight=250;
+  ctx.drawImage(img,1,42,newWidth,newHeight);
 };
 
 const canvas1 = document.querySelector("#graphscreen1");
