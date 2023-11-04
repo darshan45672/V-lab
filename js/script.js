@@ -2,9 +2,65 @@ var simStat = 0;
 var thres = 0;
 let check = 1;
 
-// canvas
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+
+const points = [
+  { x: 200, y: 185, color: 'red' },
+  { x: 400, y: 185, color: 'red' },
+  { x: 200, y: 366, color: 'black' },
+  { x: 400, y: 366, color: 'black' },
+];
+
+// const canvas = document.getElementById("myCanvas");
+// const ctx = canvas.getContext("2d");
+
+function drawPoint(x, y, color) {
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(x, y, 5, 0, 2 * Math.PI, false);
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.closePath();
+}
+
+points.forEach((point) => {
+  drawPoint(point.x, point.y, point.color);
+});
+
+let clickedPoints = [];
+
+canvas.addEventListener("click", function (e) {
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  // Find the clicked point
+  const clickedPoint = points.find((point) => {
+    const distance = Math.sqrt((x - point.x) ** 2 + (y - point.y) ** 2);
+    return distance <= 5;
+  });
+
+  if (clickedPoint) {
+    clickedPoints.push(clickedPoint);
+    drawPoint(clickedPoint.x, clickedPoint.y, clickedPoint.color);
+
+    if (clickedPoints.length === 2) {
+      if (clickedPoints[0].color === clickedPoints[1].color) {
+        // Connect points with a straight line using their respective color
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = clickedPoints[0].color;
+        ctx.beginPath();
+        ctx.moveTo(clickedPoints[0].x, clickedPoints[0].y);
+        ctx.lineTo(clickedPoints[1].x, clickedPoints[1].y);
+        ctx.stroke();
+        ctx.strokeStyle = "black"; // Reset the stroke style to black
+      }
+      // canvas
+      clickedPoints = [];
+    }
+  }
+});
 
 function roundRect(x, y, width, height, radius) {
   ctx.beginPath();
