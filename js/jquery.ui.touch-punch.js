@@ -57,6 +57,7 @@
       null // relatedTarget
     );
 
+    
     // Dispatch the simulated event to the target element
     event.target.dispatchEvent(simulatedEvent);
   }
