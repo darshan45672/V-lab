@@ -166,7 +166,7 @@ ctx.strokeStyle = "black";
 
       ctx.beginPath();
       ctx.moveTo(700, 120);
-      ctx.lineTo(700, 240);
+      ctx.lineTo(700, 241);
       ctx.stroke();
 
       ctx.beginPath();
@@ -247,6 +247,31 @@ ctx.strokeStyle = "black";
         ctx.lineTo(580, 122);
         ctx.stroke();
       }
+
+
+      //ground
+
+      
+      ctx.beginPath();
+      ctx.moveTo(570, 450);
+      ctx.lineTo(540, 450);
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.moveTo(565, 455);
+      ctx.lineTo(545, 455);
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.moveTo(560, 460);
+      ctx.lineTo(550, 460);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(555, 430);
+      ctx.lineTo(555, 450);
+      ctx.stroke();
+
 
 //Initialise system parameters here
 function varinit() {
