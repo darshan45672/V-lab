@@ -2,9 +2,7 @@ var simStat = 0;
 var thres = 0;
 let check = 1;
 
-
 // canvas
-
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
