@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SOLVE</title>
+    <title>Solve NITK</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,7 +33,19 @@
       src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"
     ></script>
 
-    <script defer src="js/script.js"></script>
+    <script defer src="js/script.js"></script> <style>
+      
+  
+      @media (max-width: 600px) {
+        /* Adjust canvas size for smaller screens */
+        canvas {
+          width: 100%;
+          height: auto;
+        }
+      }
+     </style>
+
+
   </head>
   <body onload="startsim();varinit();
 ">
@@ -120,7 +132,7 @@
             
             <div class="canvas__div">
               <!-- <div id="canvas-container"> -->
-                <canvas id="canvas" width="900" height="500" style="border: 1px solid #000; border-radius: 7px;"></canvas>
+                <canvas id="canvas" width="820" height="500" style="border: 1px solid #000; border-radius: 7px;"></canvas>
 
 
               <!-- <div id="canvas-container">
@@ -133,15 +145,15 @@
             <div class="settings-sections">
               <h3 class="task-title">Variables</h3>
                 <div class="variables-sections">
+                  <div class="var-div">
+                    <label for="resistorSpinner">Resistor (ohms):</label>
+                    <input class="var-spinner" id="resistorSpinner" name="value" />
+                    <div class="var-slider" id="resistorSlider"></div>
+                  </div>
                 <div class="var-div">
                   <label for="voltageSpinner">Voltage (V)</label>
                   <input class="var-spinner" id="voltageSpinner" name="value" />
                   <div class="var-slider" id="voltageSlider"></div>
-                </div>
-                <div class="var-div">
-                  <label for="resistorSpinner">Resistor (ohms):</label>
-                  <input class="var-spinner" id="resistorSpinner" name="value" />
-                  <div class="var-slider" id="resistorSlider"></div>
                 </div>
                 <div class="var-div">
                   <label for="thresholdSpinner">Threshold Current (mA)</label>
