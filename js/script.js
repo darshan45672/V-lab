@@ -1,6 +1,6 @@
 var simStat = 0;
 var thres = 0;
-let check = 1;
+var check = 1;
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -391,10 +391,10 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   }
 
   function setThreshold() {
-    // if (check) {
-    //   alert('complete the circuit connection')
-    //   return;
-    // }
+    if (check) {
+      alert('complete the circuit connection')
+      return;
+    }
 
     if(simStat = 1)  {
       // console.log("working");
