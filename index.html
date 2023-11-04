@@ -122,7 +122,7 @@
             
                
               <div id="canvas-container">
-                <canvas id="canvas" class="canvas"></canvas>
+                <canvas id="myCanvas" width="1200px" height="500px"></canvas>
               </div>
               <div class="graph-div display-hide">
                 <canvas id="graphscreen1" class="canvas"></canvas>
@@ -137,15 +137,15 @@
             <div class="settings-sections">
               <h3 class="task-title">Variables</h3>
                 <div class="variables-sections">
+                  <div class="var-div">
+                    <label for="resistorSpinner">Resistor (ohms):</label>
+                    <input class="var-spinner" id="resistorSpinner" name="value" />
+                    <div class="var-slider" id="resistorSlider"></div>
+                  </div>
                 <div class="var-div">
                   <label for="voltageSpinner">Voltage (V)</label>
                   <input class="var-spinner" id="voltageSpinner" name="value" />
                   <div class="var-slider" id="voltageSlider"></div>
-                </div>
-                <div class="var-div">
-                  <label for="resistorSpinner">Resistor (ohms):</label>
-                  <input class="var-spinner" id="resistorSpinner" name="value" />
-                  <div class="var-slider" id="resistorSlider"></div>
                 </div>
                 <div class="var-div">
                   <label for="thresholdSpinner">Threshold Current (mA)</label>
