@@ -68,31 +68,34 @@ ctx.fillRect(193, 215, 15, 5);
 ctx.fillStyle = "white";
 ctx.fillRect(195, 345, 15, 5);
 
-// canvas.addEventListener('click', function(event) {
-//   // Get the click coordinates relative to the canvas
-//   const clickX = event.clientX - canvas.getBoundingClientRect().left;
-//   const clickY = event.clientY - canvas.getBoundingClientRect().top;
+canvas.addEventListener('click', function(event) {
+  // Get the click coordinates relative to the canvas
+  console.log("mouse click");
+  const clickX = event.clientX - canvas.getBoundingClientRect().left;
+  const clickY = event.clientY - canvas.getBoundingClientRect().top;
 
-//   // Check if the click is on the ending red point
-//    if ((clickX >= 394) && (clickX <= 394 + 12) && (clickY >= 180) && (clickY <= 180 + 12)) {
-//      // Draw a red line between the starting red point and ending red point
-//      ctx.strokeStyle = "red";
-//      ctx.lineWidth = 2;
-//      ctx.beginPath();
-//      ctx.moveTo(200, 186);
-//      ctx.lineTo(398, 186);
-//      ctx.stroke();
-//    }
+  // Check if the click is on the ending red point
+   if ((clickX >= 394) && (clickX <= 394 + 12) && (clickY >= 180) && (clickY <= 180 + 12)) {
+     // Draw a red line between the starting red point and ending red point
+     ctx.strokeStyle = "red";
+     console.log("mouse line red ");
+     ctx.lineWidth = 2;
+     ctx.beginPath();
+     ctx.moveTo(200, 186);
+     ctx.lineTo(398, 186);
+     ctx.stroke();
+   }
 
-//   if ( clickX >= 394 && clickX <= 394 + 12 && clickY >= 360 && clickY <= 360 + 12 ) {
-//     ctx.strokeStyle = "black";
-//     ctx.lineWidth = 2;
-//     ctx.beginPath();
-//     ctx.moveTo(205, 367);
-//     ctx.lineTo(403, 367);
-//     ctx.stroke();
-//   }
-// });
+  if ( clickX >= 394 && clickX <= 394 + 12 && clickY >= 360 && clickY <= 360 + 12 ) {
+    console.log("mouse line black");
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(205, 367);
+    ctx.lineTo(403, 367);
+    ctx.stroke();
+  }
+});
 
 ctx.strokeStyle = "black";
       ctx.lineWidth = 2;
