@@ -1,7 +1,9 @@
 var simStat = 0;
 var thres = 0;
-var check = 1;
+;
 
+var red = 0;
+var black = 0;
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -126,30 +128,40 @@ ctx.fillRect(195, 345, 15, 5);
 
 canvas.addEventListener('click', function(event) {
   // Get the click coordinates relative to the canvas
-  console.log("mouse click");
+  // console.log("mouse click");
   const clickX = event.clientX - canvas.getBoundingClientRect().left;
   const clickY = event.clientY - canvas.getBoundingClientRect().top;
 
   // Check if the click is on the ending red point
    if ((clickX >= 394) && (clickX <= 394 + 12) && (clickY >= 180) && (clickY <= 180 + 12)) {
      // Draw a red line between the starting red point and ending red point
-     ctx.strokeStyle = "red";
-     console.log("mouse line red ");
+     let colour = "red";
+     ctx.strokeStyle = colour;
+    //  console.log("mouse line red ");
      ctx.lineWidth = 2;
      ctx.beginPath();
      ctx.moveTo(200, 186);
      ctx.lineTo(398, 186);
      ctx.stroke();
+     if(colour == 'red'){
+      console.log("red line");
+      red = 1;
+    }
    }
 
   if ( clickX >= 394 && clickX <= 394 + 12 && clickY >= 360 && clickY <= 360 + 12 ) {
-    console.log("mouse line black");
-    ctx.strokeStyle = "black";
+    // console.log("mouse line black");
+    let colour = "black"
+    ctx.strokeStyle = colour;
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(205, 367);
     ctx.lineTo(403, 367);
     ctx.stroke();
+    if(colour == 'black'){
+      console.log("black line");
+      black = 1;
+    }
   }
 });
 
@@ -255,7 +267,7 @@ ctx.strokeStyle = "black";
       //ground
 
       
-      ctx.beginPath();
+      ctx.beginPath();  
       ctx.moveTo(570, 450);
       ctx.lineTo(540, 450);
       ctx.stroke();
@@ -398,9 +410,13 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
     document.getElementById('message').innerHTML = "Complete the circuit connection"
   }
  }
+
+ document.getElementById("check-btn").disabled = false;
  function checkEnable() {
   if(check)  {
-    // console.log("working");
+    // console.log("working check");
+    if(red && black){
+      // console.log("working red black");
     alert('Circuit connection is correct ')
     $('#voltageSlider').slider("disable"); 
     $('#voltageSpinner').spinner("disable");
@@ -408,20 +424,36 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
     $('#resistorSpinner').spinner("disable"); 
     $('#thresholdSlider').slider("enable"); 
     $('#thresholdSpinner').spinner("enable"); 
-    checkConnection();
-    check = 0
-    
+    document.getElementById("check-btn").disabled = true;
     document.getElementById('message').innerHTML = "Set the threshold current and click on simulate button"
     }
+    else{
+      if(red == 0 ){
+        if(black == 0){
+          alert('complete the circuit connection')
+        }else{
+          alert('connect live wire')
+          console.log("live wire");
+        }
+      }
+      if(black == 0){
+        if(red == 0){
+          alert('complete the circuit connection')
+        }
+        else{
+          alert("connect neutral wire")
+          console.log("neutral wire");
+        }
+      }   
+    }
+  }
   }
 
   function setThreshold() {
     if (check) {
       alert('complete the circuit connection')
       return;
-    }
-
-    if(simStat = 1)  {
+    }else if(simStat = 1)  {
       // console.log("working");
       $('#voltageSlider').slider("disable"); 
       $('#voltageSpinner').spinner("disable");
@@ -435,10 +467,10 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
     }
   
   function parametreSliderEnable() {
-    // if (check) {
-    //   alert('complete the circuit connection')
-    //   return;
-    // }
+    if (check) {
+      alert('complete the circuit connection')
+      return;
+    }
     if(simStat = 1)  {
       console.log("working");
       $('#voltageSlider').slider("enable"); 
