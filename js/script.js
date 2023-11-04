@@ -1,7 +1,9 @@
 var simStat = 0;
+var thres = 0;
 let check = 1;
 
-const canvas = document.getElementById("myCanvas");
+// canvas
+const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 function roundRect(x, y, width, height, radius) {
@@ -18,7 +20,6 @@ function roundRect(x, y, width, height, radius) {
   ctx.closePath();
 }
 
-
 ctx.fillStyle = "black";
 roundRect(150, 200, 100, 160, 10);
 ctx.fill();
@@ -32,18 +33,22 @@ ctx.fillStyle = "gray";
 roundRect(177, 192, 50, 11, 5);
 ctx.fill();
 
+// starting red line
 ctx.fillStyle = "red";
 roundRect(195, 180, 12, 12, 6);
 ctx.fill();
 
+// starting black line
 ctx.fillStyle = "black";
 roundRect(195, 360, 12, 12, 6);
 ctx.fill();
 
+// ending red line
 ctx.fillStyle = "red";
 roundRect(394, 180, 12, 12, 6);
 ctx.fill();
 
+// ending black line
 ctx.fillStyle = "black";
 roundRect(394, 360, 12, 12, 6);
 ctx.fill();
@@ -63,8 +68,33 @@ ctx.fillRect(193, 215, 15, 5);
 ctx.fillStyle = "white";
 ctx.fillRect(195, 345, 15, 5);
 
+// canvas.addEventListener('click', function(event) {
+//   // Get the click coordinates relative to the canvas
+//   const clickX = event.clientX - canvas.getBoundingClientRect().left;
+//   const clickY = event.clientY - canvas.getBoundingClientRect().top;
 
- ctx.strokeStyle = "black";
+//   // Check if the click is on the ending red point
+//    if ((clickX >= 394) && (clickX <= 394 + 12) && (clickY >= 180) && (clickY <= 180 + 12)) {
+//      // Draw a red line between the starting red point and ending red point
+//      ctx.strokeStyle = "red";
+//      ctx.lineWidth = 2;
+//      ctx.beginPath();
+//      ctx.moveTo(200, 186);
+//      ctx.lineTo(398, 186);
+//      ctx.stroke();
+//    }
+
+//   if ( clickX >= 394 && clickX <= 394 + 12 && clickY >= 360 && clickY <= 360 + 12 ) {
+//     ctx.strokeStyle = "black";
+//     ctx.lineWidth = 2;
+//     ctx.beginPath();
+//     ctx.moveTo(205, 367);
+//     ctx.lineTo(403, 367);
+//     ctx.stroke();
+//   }
+// });
+
+ctx.strokeStyle = "black";
       ctx.lineWidth = 2;
 
        // Vertical lines
@@ -104,13 +134,9 @@ ctx.fillRect(195, 345, 15, 5);
       ctx.lineTo(701, 122);
       ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(520, 122);
-      ctx.lineTo(580, 122);
-      ctx.stroke();
-
+      
       //resistor
-
+      
       ctx.beginPath();
       ctx.moveTo(690, 310);
       ctx.lineTo(700, 316);
@@ -120,7 +146,7 @@ ctx.fillRect(195, 345, 15, 5);
       ctx.moveTo(690, 310);
       ctx.lineTo(710, 298);
       ctx.stroke();
-
+      
       ctx.beginPath();
       ctx.moveTo(710, 298);
       ctx.lineTo(690, 286);
@@ -130,22 +156,41 @@ ctx.fillRect(195, 345, 15, 5);
       ctx.moveTo(690, 286);
       ctx.lineTo(710, 272);
       ctx.stroke();
-
+      
       ctx.beginPath();
       ctx.moveTo(710, 272);
       ctx.lineTo(690, 260);
       ctx.stroke();
-
+      
       ctx.beginPath();
       ctx.moveTo(690, 260);
       ctx.lineTo(710, 248);
       ctx.stroke();
-
+      
       ctx.beginPath();
       ctx.moveTo(710, 248);
       ctx.lineTo(698, 241);
       ctx.stroke();
-//edited*/
+
+      fuse()
+      
+      function fuse(){
+        // fuse full line
+        ctx.strokeStyle ="black";
+        ctx.beginPath();
+        ctx.moveTo(520, 122);
+        ctx.lineTo(580, 122);
+        ctx.stroke();
+      }
+
+      function fusebreak(){
+        // fuse full line
+        ctx.strokeStyle = "white";
+        ctx.beginPath();
+        ctx.moveTo(520, 122);
+        ctx.lineTo(580, 122);
+        ctx.stroke();
+      }
 
 //Initialise system parameters here
 function varinit() {
@@ -166,6 +211,7 @@ function varinit() {
   document.getElementById('voltage').innerHTML = 0;
   document.getElementById('resistance').innerHTML = 0;
   document.getElementById('current').innerHTML = 0;
+  document.getElementById('threshold').innerHTML = 0;
 
   sliderDisable();
 
@@ -236,20 +282,24 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   thres = $("#thresholdSpinner").spinner("value");
   
   if (res === 0){
+    fuse();
     document.getElementById('current').innerHTML = 0;
     document.getElementById('resultMessage').innerHTML = "";
   }else{
     if ((volt/res)>=thres) {
+      fusebreak();
       document.getElementById('current').innerHTML = (volt/res);
       document.getElementById('resultMessage').innerHTML = "The fuse breaks as the maximum allowable current is exceeded";
     }
     else{
+      fuse();
       document.getElementById('current').innerHTML = (volt/res).toFixed(4);
       document.getElementById('resultMessage').innerHTML = "";
     }
   }
   document.getElementById('voltage').innerHTML = volt;
   document.getElementById('resistance').innerHTML = res;
+  document.getElementById('threshold').innerHTML = thres;
   
  };
 
@@ -274,7 +324,7 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
     $('#resistorSpinner').spinner("disable"); 
     $('#thresholdSlider').slider("enable"); 
     $('#thresholdSpinner').spinner("enable"); 
-    
+    checkConnection();
     check = 0
     
     document.getElementById('message').innerHTML = "Set the threshold current and click on simulate button"
@@ -282,6 +332,11 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   }
 
   function setThreshold() {
+    // if (check) {
+    //   alert('complete the circuit connection')
+    //   return;
+    // }
+
     if(simStat = 1)  {
       // console.log("working");
       $('#voltageSlider').slider("disable"); 
@@ -296,6 +351,10 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
     }
   
   function parametreSliderEnable() {
+    // if (check) {
+    //   alert('complete the circuit connection')
+    //   return;
+    // }
     if(simStat = 1)  {
       console.log("working");
       $('#voltageSlider').slider("enable"); 
@@ -308,14 +367,5 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
     document.getElementById('message').innerHTML = "Vary the parameters and see the Result"
   }
  
-//  if(simStat)
-//  {
-//  $('#thetaslider').slider("enable"); 
-//  $('#thetaspinner').spinner("enable");
-//  $('#omegaslider').slider("disable"); 
-//  $('#omegaspinner').spinner("disable"); 
-//  theta=$('#thetaspinner').spinner("value");
-//  printcomment("Centre at "+theta+"&deg;  Position = "+roundd(-b.ycoord+o.ycoord-r,2)+"cm<br>Vel = "+roundd(-vel,2)+"cm/s  Acc = "+roundd(-acc,2)+"cm/s^2<br>Jerk = "+roundd(-jerk,2)+"cm/s^3",2);
-//  }
 
 window.addEventListener("load", varinit);
