@@ -165,6 +165,16 @@ ctx.fillStyle = "black";
 roundRect(550, 425, 10, 10, 6);
 ctx.fill();
 
+// heading note
+ctx.fillStyle = "black"
+ctx.font = "25px bold Arial";
+let text = "Note:"
+ctx.fillText(text,10,20);
+ctx.fillStyle = "black";
+ctx.font = "20px Arial";
+text = "Resistance of Ammeter is assumed as 0"
+ctx.fillText(text,70,21);
+
 function fuseThresholdDisplay(threshold){
   ctx.fillStyle = "white"
   ctx.fillRect(500,80,115,25)
