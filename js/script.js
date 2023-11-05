@@ -122,13 +122,13 @@ ctx.strokeStyle = "black";
 ctx.lineWidth = 2;
 
 // fuse box
-ctx.rect(500, 110, 100, 25);
+ctx.rect(500, 50, 100, 25);
 ctx.stroke();
 
 // fuse naming
 ctx.font = "bold small-caps 20px Arial";
 ctx.textBaseline ="middle";
-ctx.fillText("Fuse", 530, 90)
+ctx.fillText("Fuse", 530, 30)
 
 // resistor naming
 ctx.font = "bold small-caps 20px Arial";
@@ -138,7 +138,7 @@ ctx.fillText("Resistor", 715, 276)
 // Ammetre naming
 ctx.font = "bold small-caps 20px Arial";
 ctx.textBaseline = "middle";
-ctx.fillText("Ammetre", 570, 195)
+ctx.fillText("Ammetre", 570, 165)
 
 // battery naming
 ctx.font = "bold small-caps 20px Arial";
@@ -167,11 +167,11 @@ ctx.fill();
 
 function fuseThresholdDisplay(threshold){
   ctx.fillStyle = "white"
-  ctx.fillRect(500,143,115,25)
+  ctx.fillRect(500,80,115,25)
   ctx.fillStyle = "black"
   ctx.font = "20px Arial";
   let text = `Iₜₕ = ${threshold} mA`
-  ctx.fillText(text,500,155);
+  ctx.fillText(text,500,95);
 }
 
 function resistanceDisplay(resistance){
@@ -183,13 +183,13 @@ function resistanceDisplay(resistance){
   ctx.fillText(text,725,303);
 }
 
-function currentThroughResistorDisplay(cur){
+function currentThroughAmmeterDisplay(cur){
   ctx.fillStyle = "white"
-  ctx.fillRect(550,210,125,25)
+  ctx.fillRect(550,180,125,25)
   ctx.fillStyle = "black"
   ctx.font = "20px Arial";
   let text = `Iₐ = ${cur.toFixed(2)} mA`
-  ctx.fillText(text,550,220);
+  ctx.fillText(text,550,193);
 }
 
 function batteryVoltageDisplay(voltage){
@@ -253,7 +253,7 @@ ctx.strokeStyle = "black";
 
        // Vertical lines
       ctx.beginPath();
-      ctx.moveTo(400, 120);
+      ctx.moveTo(400, 62);
       ctx.lineTo(400, 180);
       ctx.stroke();
 
@@ -263,7 +263,7 @@ ctx.strokeStyle = "black";
       ctx.stroke();
 
       ctx.beginPath();
-      ctx.moveTo(700, 120);
+      ctx.moveTo(700, 62);
       ctx.lineTo(700, 271);
       ctx.stroke();
 
@@ -279,13 +279,13 @@ ctx.strokeStyle = "black";
       ctx.stroke();
 
       ctx.beginPath();
-      ctx.moveTo(520, 122);
-      ctx.lineTo(400, 122);
+      ctx.moveTo(520, 62);
+      ctx.lineTo(400, 62);
       ctx.stroke();
 
       ctx.beginPath();
-      ctx.moveTo(580, 122);
-      ctx.lineTo(701, 122);
+      ctx.moveTo(580, 62);
+      ctx.lineTo(701, 62);
       ctx.stroke();
 
       
@@ -345,7 +345,7 @@ ctx.strokeStyle = "black";
 
       ctx.fillStyle = "white";
       ctx.beginPath();
-      ctx.arc(700, 190, 25, 0, 2 * Math.PI);
+      ctx.arc(700, 165, 25, 0, 2 * Math.PI);
       ctx.fill();
       ctx.stroke();
 
@@ -353,7 +353,7 @@ ctx.strokeStyle = "black";
       ctx.fillStyle = "black"
       ctx.font = "bold small-caps 20px Arial";
       ctx.textBaseline = "middle";
-      ctx.fillText("A", 693, 190)
+      ctx.fillText("A", 693, 165)
 
 
       fuse()
@@ -362,8 +362,8 @@ ctx.strokeStyle = "black";
         // fuse full line
         ctx.strokeStyle ="black";
         ctx.beginPath();
-        ctx.moveTo(520, 122);
-        ctx.lineTo(580, 122);
+        ctx.moveTo(520, 62);
+        ctx.lineTo(580, 62);
         ctx.stroke();
       }
 
@@ -371,8 +371,8 @@ ctx.strokeStyle = "black";
         // fuse full line
         ctx.strokeStyle = "white";
         ctx.beginPath();
-        ctx.moveTo(520, 122);
-        ctx.lineTo(580, 122);
+        ctx.moveTo(520, 62);
+        ctx.lineTo(580, 62);
         ctx.stroke();
       }
 
@@ -494,7 +494,7 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   }else{
     if ((volt/res)>=thres) {
       fusebreak();
-      $('#current').text((volt / res));
+      $('#current').text(0);
       $('#resultMessage').text("The fuse breaks as the maximum allowable current is exceeded");
     }
     else{
@@ -509,9 +509,9 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   fuseThresholdDisplay(thres);
   resistanceDisplay(res);
   if (((volt === 0)&&(res === 0))|| (res === 0) || (volt === 0) || (volt/res >= thres)) {
-    currentThroughResistorDisplay(0);    
+    currentThroughAmmeterDisplay(0);    
   } else {
-    currentThroughResistorDisplay((volt/res))
+    currentThroughAmmeterDisplay((volt/res))
   }
   batteryVoltageDisplay(volt);
  };
@@ -520,16 +520,17 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
     // console.log("working check");
     if(red && black){
       // console.log("working red black");
-    alert('Circuit connection is correct ')
-    $('#voltageSlider').slider("disable"); 
-    $('#voltageSpinner').spinner("disable");
-    $('#resistorSlider').slider("disable"); 
-    $('#resistorSpinner').spinner("disable"); 
-    $('#thresholdSlider').slider("enable"); 
-    $('#thresholdSpinner').spinner("enable"); 
-    $("#check-btn").prop("disabled", true);
-    $("#message").text("Set the threshold current and click on simulate button");
-    $("#threshold-btn, #simulate-btn").prop("disabled", false);
+      alert('Circuit connection is correct ')
+      $('#voltageSlider').slider("disable"); 
+      $('#voltageSpinner').spinner("disable");
+      $('#resistorSlider').slider("disable"); 
+      $('#resistorSpinner').spinner("disable"); 
+      $('#thresholdSlider').slider("enable"); 
+      $('#thresholdSpinner').spinner("enable"); 
+      $("#check-btn").prop("disabled", true);
+      $("#message").text("Set the threshold current and click on simulate button");
+      $("#threshold-btn, #simulate-btn").prop("disabled", false);
+      varupdate();
     }
     else{
       if(red == 0 ){
