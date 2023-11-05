@@ -14,9 +14,6 @@ const points = [
   { x: 400, y: 366, color: 'black' },
 ];
 
-// const canvas = document.getElementById("myCanvas");
-// const ctx = canvas.getContext("2d");
-
 function drawPoint(x, y, color) {
   ctx.lineWidth = 2;
   ctx.beginPath();
@@ -166,14 +163,14 @@ roundRect(550, 425, 10, 10, 6);
 ctx.fill();
 
 // heading note
-ctx.fillStyle = "black"
-ctx.font = "25px bold Arial";
-let text = "Note:"
-ctx.fillText(text,10,20);
-ctx.fillStyle = "black";
-ctx.font = "20px Arial";
-text = "Resistance of Ammeter is assumed as 0"
-ctx.fillText(text,70,21);
+// ctx.fillStyle = "black"
+// ctx.font = "25px bold Arial";
+// let text = "Note:"
+// ctx.fillText(text,10,20);
+// ctx.fillStyle = "black";
+// ctx.font = "20px Arial";
+// text = "Resistance of Ammeter is assumed as 0"
+// ctx.fillText(text,70,21);
 
 function fuseThresholdDisplay(threshold){
   ctx.fillStyle = "white"
@@ -407,7 +404,6 @@ ctx.strokeStyle = "black";
       ctx.lineTo(555, 450);
       ctx.stroke();
 
-
 //Initialise system parameters here
 function varinit() {
   varchange();
@@ -428,10 +424,11 @@ function varinit() {
   $('#resistorSpinner').spinner("disable"); 
   $('#thresholdSpinner').spinner("disable"); 
   $("#threshold-btn, #simulate-btn").prop("disabled", true);
-  $("#message").text("Complete the circuit connection");
+  $("#message").text("Complete the circuit connection, Connect the terminals from battery to the circuit by clicking on the points(red - red and black to black)");
   $("#voltage, #resistance, #current, #threshold").text(0);
 
 }
+
 function varchange() {
   $("#voltageSlider").slider({ max: 300, min: 0, step: 10 });
   $("#voltageSpinner").spinner({ max: 300, min: 0, step: 10 });
