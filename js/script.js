@@ -377,26 +377,26 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   res = $("#resistorSpinner").spinner("value");
   thres = $("#thresholdSpinner").spinner("value");
   
-  
   if (res === 0){
     fuse();
-    document.getElementById('current').innerHTML = 0;
-    document.getElementById('resultMessage').innerHTML = "";
+    $('#current').text(0);
+    $('#resultMessage').text("");
   }else{
     if ((volt/res)>=thres) {
       fusebreak();
-      document.getElementById('current').innerHTML = (volt/res);
-      document.getElementById('resultMessage').innerHTML = "The fuse breaks as the maximum allowable current is exceeded";
+      $('#current').text((volt / res));
+      $('#resultMessage').text("The fuse breaks as the maximum allowable current is exceeded");
     }
     else{
       fuse();
-      document.getElementById('current').innerHTML = (volt/res).toFixed(4);
-      document.getElementById('resultMessage').innerHTML = "";
+      $('#current').text((volt / res).toFixed(4));
+      $('#resultMessage').text("");
     }
   }
-  document.getElementById('voltage').innerHTML = volt;
-  document.getElementById('resistance').innerHTML = res;
-  document.getElementById('threshold').innerHTML = thres
+  $('#voltage').text(volt);
+  $('#resistance').text(res);
+  $('#threshold').text(thres);
+  
  };
 
  function sliderDisable() {
