@@ -52,7 +52,7 @@
     <div class="title-div-container">
       <div class="title-div">
         <div class="logo-div">
-          <a href="#"><img src="images/nitk.svg" alt="Logo" class="logo" /></a>
+          <a href="https://github.com/darshan45672"><img src="images/nitk.svg" alt="Logo" class="logo" /></a>
         </div>
         <h1>Battery and Fuse</h1>
       </div>
@@ -132,7 +132,7 @@
             
             <div class="canvas__div">
               <!-- <div id="canvas-container"> -->
-                <canvas id="canvas" width="820" height="500" style="border: 1px solid #000; border-radius: 7px;"></canvas>
+                <canvas id="canvas" width="820" height="500" style="border: 1px solid #fff; border-radius: 7px;"></canvas>
 
 
               <!-- <div id="canvas-container">
@@ -168,17 +168,10 @@
             <h3 class="task-title">Controls</h3>
               <div class="settings-sections">
                 <div class="control-sections">
-
-                <!-- <button style="width:30%;">Add to table</button>
-			
-            <img id="playpausebutton" style="width:40px;" onclick="simstate()" src="./images/blueplaydull.svg" alt="" />
-                <img id="graphbutton" style="width:40px;" onclick="plotgraph()" src="./images/graphbutton.svg" alt="" />
-              -->
-              <button id="check-btn" class="button" style="cursor: pointer;" onclick="checkEnable()">Check</button> 
-              <button class="button" style="cursor: pointer;" onclick=" setThreshold()">Reset Threshold Current</button>
-              <button class="button" style="cursor: pointer;" onclick=" parametreSliderEnable()">Simulate</button>
-              <p id="message" style="text-align: center; margin-top: 20px;"></p>
-         
+                  <button id="check-btn" class="button" style="cursor: pointer;" onclick="checkConnection()">Check</button> 
+                  <button id="simulate-btn" class="button" style="cursor: pointer;" onclick=" setThreshold()">Set Threshold Current</button>
+                  <button id="threshold-btn" class="button" style="cursor: pointer;" onclick=" parametreSliderEnable()">Simulate</button>
+                  <p id="message" style="text-align: center; margin-top: 20px;"></p>
                 </div>
               </div>
           </div>
@@ -187,10 +180,10 @@
             <h3 class="task-title">Results</h3>
               <div class="settings-sections">
                 <div class="control-sections">
-                  <p id="p1">Resistance = <span id="resistance"></span> ohms</p>
-                  <p id="p2">Voltage = <span id="voltage"></span> V</p>
-                  <p id="p2">Threshold Current = <span id="threshold"></span> mA</p>
-                  <p id="p2">Current = <span id="current"></span> mA</p>
+                  <p id="p1">Resistance (R) = <span id="resistance"></span> Ω</p>
+                  <p id="p2">Voltage (V<sub>s</sub>) = <span id="voltage"></span> V</p>
+                  <p id="p2">Threshold Current (I<sub>th</sub>) = <span id="threshold"></span> mA</p>
+                  <p id="p2">Current (I<sub>a</sub>) = <span id="current"></span> mA</p>
                   <p id="p3"><sapn id="resultMessage"></span></p>
                 </div>
               </div>

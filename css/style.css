@@ -329,10 +329,10 @@
   /* border: 1px solid var(--clr-title-background);
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem; */
-
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
+  padding-left: 50px;
 }
 .control-sections {
   padding: 55px 50px 50px 125px;
