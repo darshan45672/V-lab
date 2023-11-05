@@ -377,6 +377,7 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   res = $("#resistorSpinner").spinner("value");
   thres = $("#thresholdSpinner").spinner("value");
   
+  
   if (res === 0){
     fuse();
     document.getElementById('current').innerHTML = 0;
@@ -395,8 +396,7 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   }
   document.getElementById('voltage').innerHTML = volt;
   document.getElementById('resistance').innerHTML = res;
-  document.getElementById('threshold').innerHTML = thres;
-  
+  document.getElementById('threshold').innerHTML = thres
  };
 
  function sliderDisable() {
@@ -411,9 +411,7 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   }
  }
 
- document.getElementById("check-btn").disabled = false;
  function checkEnable() {
-  if(check)  {
     // console.log("working check");
     if(red && black){
       // console.log("working red black");
@@ -447,13 +445,9 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
       }   
     }
   }
-  }
-
+  
   function setThreshold() {
-    if (check) {
-      alert('complete the circuit connection')
-      return;
-    }else if(simStat = 1)  {
+    if(simStat = 1)  {
       // console.log("working");
       $('#voltageSlider').slider("disable"); 
       $('#voltageSpinner').spinner("disable");
@@ -467,10 +461,6 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
     }
   
   function parametreSliderEnable() {
-    if (check) {
-      alert('complete the circuit connection')
-      return;
-    }
     if(simStat = 1)  {
       console.log("working");
       $('#voltageSlider').slider("enable"); 
