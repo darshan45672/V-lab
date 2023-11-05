@@ -1,6 +1,5 @@
 var simStat = 0;
 var thres = 0;
-;
 
 var red = 0;
 var black = 0;
@@ -108,13 +107,6 @@ ctx.fillStyle = "black";
 roundRect(394, 360, 12, 12, 6);
 ctx.fill();
 
-// resistor terminal black
-// ctx.fillStyle = "black";
-// roundRect(693, 338, 13, 13, 8);
-// ctx.fill();
-// roundRect(695, 210, 10, 10, 6);
-// ctx.fill();
-
 ctx.strokeStyle = "black";
 ctx.lineWidth = 2;
 
@@ -163,14 +155,14 @@ roundRect(550, 425, 10, 10, 6);
 ctx.fill();
 
 // heading note
-// ctx.fillStyle = "black"
-// ctx.font = "25px bold Arial";
-// let text = "Note:"
-// ctx.fillText(text,10,20);
-// ctx.fillStyle = "black";
-// ctx.font = "20px Arial";
-// text = "Resistance of Ammeter is assumed as 0"
-// ctx.fillText(text,70,21);
+ctx.fillStyle = "black"
+ctx.font = "25px bold Arial";
+let text = "Note:"
+ctx.fillText(text,10,20);
+ctx.fillStyle = "black";
+ctx.font = "20px Arial";
+text = "Resistance of Ammeter is assumed as 0"
+ctx.fillText(text,70,21);
 
 function fuseThresholdDisplay(threshold){
   ctx.fillStyle = "white"
@@ -207,6 +199,7 @@ function batteryVoltageDisplay(voltage){
   let text = `Vₛ = ${voltage.toFixed(1)} V`
   ctx.fillText(text,20,320);
 }
+
 // Add a plus (+) symbol
 ctx.fillStyle = "black";
 ctx.fillRect(198, 210, 5, 15);
@@ -256,153 +249,153 @@ canvas.addEventListener('click', function(event) {
 });
 
 ctx.strokeStyle = "black";
-      ctx.lineWidth = 2;
+ctx.lineWidth = 2;
 
-       // Vertical lines
-      ctx.beginPath();
-      ctx.moveTo(400, 62);
-      ctx.lineTo(400, 180);
-      ctx.stroke();
+// Vertical lines
+ctx.beginPath();
+ctx.moveTo(400, 62);
+ctx.lineTo(400, 180);
+ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(400, 360);
-      ctx.lineTo(400, 430);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(400, 360);
+ctx.lineTo(400, 430);
+ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(700, 62);
-      ctx.lineTo(700, 271);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(700, 62);
+ctx.lineTo(700, 271);
+ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(700, 345);
-      ctx.lineTo(700, 430);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(700, 345);
+ctx.lineTo(700, 430);
+ctx.stroke();
 
-      // Horizontal lines
-      ctx.beginPath();
-      ctx.moveTo(400, 430);
-      ctx.lineTo(700, 430);
-      ctx.stroke();
+// Horizontal lines
+ctx.beginPath();
+ctx.moveTo(400, 430);
+ctx.lineTo(700, 430);
+ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(520, 62);
-      ctx.lineTo(400, 62);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(520, 62);
+ctx.lineTo(400, 62);
+ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(580, 62);
-      ctx.lineTo(701, 62);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(580, 62);
+ctx.lineTo(701, 62);
+ctx.stroke();
 
       
-      //resistor
+//resistor
       
-      ctx.beginPath();
-      ctx.moveTo(690, 340);
-      ctx.lineTo(700, 346);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(690, 340);
+ctx.lineTo(700, 346);
+ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(690, 340);
-      ctx.lineTo(710, 328);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(690, 340);
+ctx.lineTo(710, 328);
+ctx.stroke();
       
-      ctx.beginPath();
-      ctx.moveTo(710, 328);
-      ctx.lineTo(690, 316);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(710, 328);
+ctx.lineTo(690, 316);
+ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(690, 316);
-      ctx.lineTo(710, 302);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(690, 316);
+ctx.lineTo(710, 302);
+ctx.stroke();
       
-      ctx.beginPath();
-      ctx.moveTo(710, 302);
-      ctx.lineTo(690, 290);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(710, 302);
+ctx.lineTo(690, 290);
+ctx.stroke();
       
-      ctx.beginPath();
-      ctx.moveTo(690, 290);
-      ctx.lineTo(710, 278);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(690, 290);
+ctx.lineTo(710, 278);
+ctx.stroke();
       
-      ctx.beginPath();
-      ctx.moveTo(710, 278);
-      ctx.lineTo(698, 271);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(710, 278);
+ctx.lineTo(698, 271);
+ctx.stroke();
 
-      // resistor end
+// resistor end
 
-      // ctx.beginPath();
-      // ctx.moveTo(705, 345);
-      // ctx.lineTo(630, 345);
-      // ctx.stroke();
+// ctx.beginPath();io
+// ctx.moveTo(705, 345);
+// ctx.lineTo(630, 345);
+// ctx.stroke();
       
-      // ctx.beginPath();
-      // ctx.moveTo(630, 345);
-      // ctx.lineTo(630, 215);
-      // ctx.stroke();
+// ctx.beginPath();
+// ctx.moveTo(630, 345);
+// ctx.lineTo(630, 215);
+// ctx.stroke();
 
-      // ctx.beginPath();
-      // ctx.moveTo(700, 215);
-      // ctx.lineTo(630, 215);
-      // ctx.stroke();
+// ctx.beginPath();
+// ctx.moveTo(700, 215);
+// ctx.lineTo(630, 215);
+// ctx.stroke();
 
-      ctx.fillStyle = "white";
-      ctx.beginPath();
-      ctx.arc(700, 165, 25, 0, 2 * Math.PI);
-      ctx.fill();
-      ctx.stroke();
+ctx.fillStyle = "white";
+ctx.beginPath();
+ctx.arc(700, 165, 25, 0, 2 * Math.PI);
+ctx.fill();
+ctx.stroke();
 
-      // Ammetre symbol naming
-      ctx.fillStyle = "black"
-      ctx.font = "bold small-caps 20px Arial";
-      ctx.textBaseline = "middle";
-      ctx.fillText("A", 693, 165)
+// Ammetre symbol naming
+ctx.fillStyle = "black"
+ctx.font = "bold small-caps 20px Arial";
+ctx.textBaseline = "middle";
+ctx.fillText("A", 693, 165)
 
 
-      fuse()
+fuse()
       
-      function fuse(){
-        // fuse full line
-        ctx.strokeStyle ="black";
-        ctx.beginPath();
-        ctx.moveTo(520, 62);
-        ctx.lineTo(580, 62);
-        ctx.stroke();
-      }
+function fuse(){
+  // fuse full line
+  ctx.strokeStyle ="black";
+  ctx.beginPath();
+  ctx.moveTo(520, 62);
+  ctx.lineTo(580, 62);
+  ctx.stroke();
+}
 
-      function fusebreak(){
-        // fuse full line
-        ctx.strokeStyle = "white";
-        ctx.beginPath();
-        ctx.moveTo(520, 62);
-        ctx.lineTo(580, 62);
-        ctx.stroke();
-      }
+function fusebreak(){
+  // fuse full line
+  ctx.strokeStyle = "white";
+  ctx.beginPath();
+  ctx.moveTo(520, 62);
+  ctx.lineTo(580, 62);
+  ctx.stroke();
+}
 
-      //ground
-      ctx.beginPath();  
-      ctx.moveTo(570, 450);
-      ctx.lineTo(540, 450);
-      ctx.stroke();
+//ground
+ctx.beginPath();  
+ctx.moveTo(570, 450);
+ctx.lineTo(540, 450);
+ctx.stroke();
       
-      ctx.beginPath();
-      ctx.moveTo(565, 455);
-      ctx.lineTo(545, 455);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(565, 455);
+ctx.lineTo(545, 455);
+ctx.stroke();
       
-      ctx.beginPath();
-      ctx.moveTo(560, 460);
-      ctx.lineTo(550, 460);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(560, 460);
+ctx.lineTo(550, 460);
+ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(555, 430);
-      ctx.lineTo(555, 450);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(555, 430);
+ctx.lineTo(555, 450);
+ctx.stroke();
 
 //Initialise system parameters here
 function varinit() {
@@ -489,7 +482,7 @@ function varchange() {
 function varupdate() {
   $("#voltageSpinner").spinner("value", $("#voltageSlider").slider("value")); //updating slider location with change in spinner(debug)
   $("#resistorSpinner").spinner("value", $("#resistorSlider").slider("value"));
-$("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
+  $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   volt = $("#voltageSpinner").spinner("value"); //Updating variables
   res = $("#resistorSpinner").spinner("value");
   thres = $("#thresholdSpinner").spinner("value");
@@ -523,63 +516,63 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   batteryVoltageDisplay(volt);
  };
 
- function checkConnection() {
-    // console.log("working check");
-    if(red && black){
-      // console.log("working red black");
-      alert('Circuit connection is correct ')
-      $('#voltageSlider').slider("disable"); 
-      $('#voltageSpinner').spinner("disable");
-      $('#resistorSlider').slider("disable"); 
-      $('#resistorSpinner').spinner("disable"); 
-      $('#thresholdSlider').slider("enable"); 
-      $('#thresholdSpinner').spinner("enable"); 
-      $("#check-btn").prop("disabled", true);
-      $("#message").text("Set the threshold current and click on simulate button");
-      $("#threshold-btn, #simulate-btn").prop("disabled", false);
-      varupdate();
-    }
-    else{
-      if(red == 0 ){
-        if(black == 0){
-          alert('complete the circuit connection')
-          return;
-        }else{
-          alert('connect live wire')
-          console.log("live wire");
-        }
-      }
+function checkConnection() {
+  // console.log("working check");
+  if(red && black){
+    // console.log("working red black");
+    alert('Circuit connection is correct ')
+    $('#voltageSlider').slider("disable"); 
+    $('#voltageSpinner').spinner("disable");
+    $('#resistorSlider').slider("disable"); 
+    $('#resistorSpinner').spinner("disable"); 
+    $('#thresholdSlider').slider("enable"); 
+    $('#thresholdSpinner').spinner("enable"); 
+    $("#check-btn").prop("disabled", true);
+    $("#message").text("Set the threshold current and click on simulate button");
+    $("#threshold-btn, #simulate-btn").prop("disabled", false);
+    varupdate();
+  }
+  else{
+    if(red == 0 ){
       if(black == 0){
-          alert("connect neutral wire")
-          console.log("neutral wire");
-        }
-      }   
+        alert('complete the circuit connection')
+        return;
+      }else{
+        alert('connect live wire')
+        console.log("live wire");
+      }
     }
+    if(black == 0){
+        alert("connect neutral wire")
+        console.log("neutral wire");
+      }
+    }   
+  }
 
   
-  function setThreshold() {
-    if(simStat = 1)  {
-      // console.log("working");
-      $('#voltageSlider').slider("disable"); 
-      $('#voltageSpinner').spinner("disable");
-      $('#resistorSlider').slider("disable"); 
-      $('#resistorSpinner').spinner("disable"); 
-      $('#thresholdSlider').slider("enable"); 
-      $('#thresholdSpinner').spinner("enable"); 
-      $("#message").text("Set the threshold current and click on simulate button");
-      }
+function setThreshold() {
+  if(simStat = 1)  {
+    // console.log("working");
+    $('#voltageSlider').slider("disable"); 
+    $('#voltageSpinner').spinner("disable");
+    $('#resistorSlider').slider("disable"); 
+    $('#resistorSpinner').spinner("disable"); 
+    $('#thresholdSlider').slider("enable"); 
+    $('#thresholdSpinner').spinner("enable"); 
+    $("#message").text("Set the threshold current and click on simulate button");
     }
-  
-  function parametreSliderEnable() {
-      console.log("working");
-      $('#voltageSlider').slider("enable"); 
-      $('#voltageSpinner').spinner("enable");
-      $('#resistorSlider').slider("enable"); 
-      $('#resistorSpinner').spinner("enable"); 
-      $('#thresholdSlider').slider("disable"); 
-      $('#thresholdSpinner').spinner("disable"); 
-      $("#message").text("Vary the parameters and see the Result");
   }
+  
+function parametreSliderEnable() {
+  console.log("working");
+  $('#voltageSlider').slider("enable"); 
+  $('#voltageSpinner').spinner("enable");
+  $('#resistorSlider').slider("enable"); 
+  $('#resistorSpinner').spinner("enable"); 
+  $('#thresholdSlider').slider("disable"); 
+  $('#thresholdSpinner').spinner("disable"); 
+  $("#message").text("Vary the parameters and see the Result");
+}
  
 
 window.addEventListener("load", varinit);
