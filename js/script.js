@@ -301,16 +301,22 @@ function varinit() {
   $("#CsArea").spinner("value", 0.01);
   $("#Ivalue").spinner("value", 0.01);
 
-  var votlageDisplay = document.getElementById('voltage');
-  var resistanceDisplay = document.getElementById('resistance');
+  $('#voltageSlider').slider("disable"); 
+  $('#voltageSpinner').spinner("disable");
+  $('#resistorSlider').slider("disable"); 
+  $('#thresholdSlider').slider("disable"); 
+  $('#resistorSpinner').spinner("disable"); 
+  $('#thresholdSpinner').spinner("disable"); 
+
+  document.getElementById("threshold-btn").disabled = true;
+  document.getElementById("simulate-btn").disabled = true;
+
+  document.getElementById('message').innerHTML = "Complete the circuit connection"
   
   document.getElementById('voltage').innerHTML = 0;
   document.getElementById('resistance').innerHTML = 0;
   document.getElementById('current').innerHTML = 0;
   document.getElementById('threshold').innerHTML = 0;
-
-  sliderDisable();
-
 }
 function varchange() {
   $("#voltageSlider").slider({ max: 300, min: 0, step: 10 });
@@ -399,19 +405,7 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   
  };
 
- function sliderDisable() {
-  if(!simStat)  {
-    $('#voltageSlider').slider("disable"); 
-    $('#voltageSpinner').spinner("disable");
-    $('#resistorSlider').slider("disable"); 
-    $('#thresholdSlider').slider("disable"); 
-    $('#resistorSpinner').spinner("disable"); 
-    $('#thresholdSpinner').spinner("disable"); 
-    document.getElementById('message').innerHTML = "Complete the circuit connection"
-  }
- }
-
- function checkEnable() {
+ function checkConnection() {
     // console.log("working check");
     if(red && black){
       // console.log("working red black");
@@ -424,27 +418,27 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
     $('#thresholdSpinner').spinner("enable"); 
     document.getElementById("check-btn").disabled = true;
     document.getElementById('message').innerHTML = "Set the threshold current and click on simulate button"
+    document.getElementById("threshold-btn").disabled = false;
+    document.getElementById("simulate-btn").disabled = false;
     }
     else{
       if(red == 0 ){
         if(black == 0){
           alert('complete the circuit connection')
+          return;
         }else{
           alert('connect live wire')
           console.log("live wire");
         }
       }
       if(black == 0){
-        if(red == 0){
-          alert('complete the circuit connection')
-        }
-        else{
+
           alert("connect neutral wire")
           console.log("neutral wire");
         }
       }   
     }
-  }
+
   
   function setThreshold() {
     if(simStat = 1)  {

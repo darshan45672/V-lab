@@ -132,7 +132,7 @@
             
             <div class="canvas__div">
               <!-- <div id="canvas-container"> -->
-                <canvas id="canvas" width="820" height="500" style="border: 1px solid #000; border-radius: 7px;"></canvas>
+                <canvas id="canvas" width="820" height="500" style="border: 1px solid #fff; border-radius: 7px;"></canvas>
 
 
               <!-- <div id="canvas-container">
@@ -174,9 +174,9 @@
             <img id="playpausebutton" style="width:40px;" onclick="simstate()" src="./images/blueplaydull.svg" alt="" />
                 <img id="graphbutton" style="width:40px;" onclick="plotgraph()" src="./images/graphbutton.svg" alt="" />
               -->
-              <button id="check-btn" class="button" style="cursor: pointer;" onclick="checkEnable()">Check</button> 
-              <button class="button" style="cursor: pointer;" onclick=" setThreshold()">Reset Threshold Current</button>
-              <button class="button" style="cursor: pointer;" onclick=" parametreSliderEnable()">Simulate</button>
+              <button id="check-btn" class="button" style="cursor: pointer;" onclick="checkConnection()">Check</button> 
+              <button id="simulate-btn" class="button" style="cursor: pointer;" onclick=" setThreshold()">Set Threshold Current</button>
+              <button id="threshold-btn" class="button" style="cursor: pointer;" onclick=" parametreSliderEnable()">Simulate</button>
               <p id="message" style="text-align: center; margin-top: 20px;"></p>
          
                 </div>
