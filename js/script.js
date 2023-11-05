@@ -111,12 +111,95 @@ ctx.fillStyle = "black";
 roundRect(394, 360, 12, 12, 6);
 ctx.fill();
 
+// resistor terminal black
+// ctx.fillStyle = "black";
+// roundRect(693, 338, 13, 13, 8);
+// ctx.fill();
+// roundRect(695, 210, 10, 10, 6);
+// ctx.fill();
+
 ctx.strokeStyle = "black";
 ctx.lineWidth = 2;
 
+// fuse box
 ctx.rect(500, 110, 100, 25);
 ctx.stroke();
 
+// fuse naming
+ctx.font = "bold small-caps 20px Arial";
+ctx.textBaseline ="middle";
+ctx.fillText("Fuse", 530, 90)
+
+// resistor naming
+ctx.font = "bold small-caps 20px Arial";
+ctx.textBaseline = "middle";
+ctx.fillText("Resistor", 715, 276)
+
+// Ammetre naming
+ctx.font = "bold small-caps 20px Arial";
+ctx.textBaseline = "middle";
+ctx.fillText("Ammetre", 570, 195)
+
+// battery naming
+ctx.font = "bold small-caps 20px Arial";
+ctx.textBaseline = "middle";
+ctx.fillText("Battery", 45, 280)
+
+// positive terminal naming
+ctx.font = "bold small-caps 20px Arial";
+ctx.textBaseline = "middle";
+ctx.fillText("+ve", 185, 160)
+
+// negeative terminal naming
+ctx.font = "bold small-caps 20px Arial";
+ctx.textBaseline = "middle";
+ctx.fillText("-ve", 185, 398)
+
+// GND terminal naming
+ctx.font = "bold small-caps 20px Arial";
+ctx.textBaseline = "middle";
+ctx.fillText("GND", 530, 410)
+
+// gnd terminal
+ctx.fillStyle = "black";
+roundRect(550, 425, 10, 10, 6);
+ctx.fill();
+
+function fuseThresholdDisplay(threshold){
+  ctx.fillStyle = "white"
+  ctx.fillRect(500,143,115,25)
+  ctx.fillStyle = "black"
+  ctx.font = "20px Arial";
+  let text = `Iₜₕ = ${threshold} mA`
+  ctx.fillText(text,500,155);
+}
+
+function resistanceDisplay(resistance){
+  ctx.fillStyle = "white"
+  ctx.fillRect(725,290,100,25)
+  ctx.fillStyle = "black"
+  ctx.font = "20px Arial";
+  let text = `R = ${resistance} Ω`
+  ctx.fillText(text,725,303);
+}
+
+function currentThroughResistorDisplay(cur){
+  ctx.fillStyle = "white"
+  ctx.fillRect(550,210,125,25)
+  ctx.fillStyle = "black"
+  ctx.font = "20px Arial";
+  let text = `Iₐ = ${cur.toFixed(2)} mA`
+  ctx.fillText(text,550,220);
+}
+
+function batteryVoltageDisplay(voltage){
+  ctx.fillStyle = "white"
+  ctx.fillRect(20,310,125,25)
+  ctx.fillStyle = "black"
+  ctx.font = "20px Arial";
+  let text = `Vₛ = ${voltage.toFixed(1)} V`
+  ctx.fillText(text,20,320);
+}
 // Add a plus (+) symbol
 ctx.fillStyle = "black";
 ctx.fillRect(198, 210, 5, 15);
@@ -181,11 +264,11 @@ ctx.strokeStyle = "black";
 
       ctx.beginPath();
       ctx.moveTo(700, 120);
-      ctx.lineTo(700, 241);
+      ctx.lineTo(700, 271);
       ctx.stroke();
 
       ctx.beginPath();
-      ctx.moveTo(700, 315);
+      ctx.moveTo(700, 345);
       ctx.lineTo(700, 430);
       ctx.stroke();
 
@@ -209,39 +292,69 @@ ctx.strokeStyle = "black";
       //resistor
       
       ctx.beginPath();
-      ctx.moveTo(690, 310);
-      ctx.lineTo(700, 316);
+      ctx.moveTo(690, 340);
+      ctx.lineTo(700, 346);
       ctx.stroke();
 
       ctx.beginPath();
-      ctx.moveTo(690, 310);
-      ctx.lineTo(710, 298);
+      ctx.moveTo(690, 340);
+      ctx.lineTo(710, 328);
       ctx.stroke();
       
       ctx.beginPath();
-      ctx.moveTo(710, 298);
-      ctx.lineTo(690, 286);
+      ctx.moveTo(710, 328);
+      ctx.lineTo(690, 316);
       ctx.stroke();
 
       ctx.beginPath();
-      ctx.moveTo(690, 286);
-      ctx.lineTo(710, 272);
+      ctx.moveTo(690, 316);
+      ctx.lineTo(710, 302);
       ctx.stroke();
       
       ctx.beginPath();
-      ctx.moveTo(710, 272);
-      ctx.lineTo(690, 260);
+      ctx.moveTo(710, 302);
+      ctx.lineTo(690, 290);
       ctx.stroke();
       
       ctx.beginPath();
-      ctx.moveTo(690, 260);
-      ctx.lineTo(710, 248);
+      ctx.moveTo(690, 290);
+      ctx.lineTo(710, 278);
       ctx.stroke();
       
       ctx.beginPath();
-      ctx.moveTo(710, 248);
-      ctx.lineTo(698, 241);
+      ctx.moveTo(710, 278);
+      ctx.lineTo(698, 271);
       ctx.stroke();
+
+      // resistor end
+
+      // ctx.beginPath();
+      // ctx.moveTo(705, 345);
+      // ctx.lineTo(630, 345);
+      // ctx.stroke();
+      
+      // ctx.beginPath();
+      // ctx.moveTo(630, 345);
+      // ctx.lineTo(630, 215);
+      // ctx.stroke();
+
+      // ctx.beginPath();
+      // ctx.moveTo(700, 215);
+      // ctx.lineTo(630, 215);
+      // ctx.stroke();
+
+      ctx.fillStyle = "white";
+      ctx.beginPath();
+      ctx.arc(700, 190, 25, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.stroke();
+
+      // Ammetre symbol naming
+      ctx.fillStyle = "black"
+      ctx.font = "bold small-caps 20px Arial";
+      ctx.textBaseline = "middle";
+      ctx.fillText("A", 693, 190)
+
 
       fuse()
       
@@ -263,10 +376,7 @@ ctx.strokeStyle = "black";
         ctx.stroke();
       }
 
-
       //ground
-
-      
       ctx.beginPath();  
       ctx.moveTo(570, 450);
       ctx.lineTo(540, 450);
@@ -396,7 +506,14 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   $('#voltage').text(volt);
   $('#resistance').text(res);
   $('#threshold').text(thres);
-  
+  fuseThresholdDisplay(thres);
+  resistanceDisplay(res);
+  if (((volt === 0)&&(res === 0))|| (res === 0) || (volt === 0) || (volt/res >= thres)) {
+    currentThroughResistorDisplay(0);    
+  } else {
+    currentThroughResistorDisplay((volt/res))
+  }
+  batteryVoltageDisplay(volt);
  };
 
  function checkConnection() {
