@@ -307,16 +307,10 @@ function varinit() {
   $('#thresholdSlider').slider("disable"); 
   $('#resistorSpinner').spinner("disable"); 
   $('#thresholdSpinner').spinner("disable"); 
+  $("#threshold-btn, #simulate-btn").prop("disabled", true);
+  $("#message").text("Complete the circuit connection");
+  $("#voltage, #resistance, #current, #threshold").text(0);
 
-  document.getElementById("threshold-btn").disabled = true;
-  document.getElementById("simulate-btn").disabled = true;
-
-  document.getElementById('message').innerHTML = "Complete the circuit connection"
-  
-  document.getElementById('voltage').innerHTML = 0;
-  document.getElementById('resistance').innerHTML = 0;
-  document.getElementById('current').innerHTML = 0;
-  document.getElementById('threshold').innerHTML = 0;
 }
 function varchange() {
   $("#voltageSlider").slider({ max: 300, min: 0, step: 10 });
@@ -416,10 +410,9 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
     $('#resistorSpinner').spinner("disable"); 
     $('#thresholdSlider').slider("enable"); 
     $('#thresholdSpinner').spinner("enable"); 
-    document.getElementById("check-btn").disabled = true;
-    document.getElementById('message').innerHTML = "Set the threshold current and click on simulate button"
-    document.getElementById("threshold-btn").disabled = false;
-    document.getElementById("simulate-btn").disabled = false;
+    $("#check-btn").prop("disabled", true);
+    $("#message").text("Set the threshold current and click on simulate button");
+    $("#threshold-btn, #simulate-btn").prop("disabled", false);
     }
     else{
       if(red == 0 ){
@@ -432,7 +425,6 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
         }
       }
       if(black == 0){
-
           alert("connect neutral wire")
           console.log("neutral wire");
         }
@@ -449,13 +441,11 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
       $('#resistorSpinner').spinner("disable"); 
       $('#thresholdSlider').slider("enable"); 
       $('#thresholdSpinner').spinner("enable"); 
-      
-      document.getElementById('message').innerHTML = "Set the threshold current and click on simulate button"
+      $("#message").text("Set the threshold current and click on simulate button");
       }
     }
   
   function parametreSliderEnable() {
-    if(simStat = 1)  {
       console.log("working");
       $('#voltageSlider').slider("enable"); 
       $('#voltageSpinner').spinner("enable");
@@ -463,8 +453,7 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
       $('#resistorSpinner').spinner("enable"); 
       $('#thresholdSlider').slider("disable"); 
       $('#thresholdSpinner').spinner("disable"); 
-    }
-    document.getElementById('message').innerHTML = "Vary the parameters and see the Result"
+      $("#message").text("Vary the parameters and see the Result");
   }
  
 
