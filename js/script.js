@@ -1,8 +1,10 @@
 var simStat = 0;
 var thres = 0;
+let check = 1;
 
 var red = 0;
 var black = 0;
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -10,7 +12,7 @@ const points = [
   { x: 200, y: 185, color: 'red' },
   { x: 400, y: 185, color: 'red' },
   { x: 200, y: 366, color: 'black' },
-  { x: 400, y: 366, color: 'black' },
+  { x: 400, y: 360, color: 'black' },
 ];
 
 function drawPoint(x, y, color) {
@@ -29,36 +31,46 @@ points.forEach((point) => {
 let clickedPoints = [];
 
 canvas.addEventListener("click", function (e) {
-  const rect = canvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+const rect = canvas.getBoundingClientRect();
+const x = e.clientX - rect.left;
+const y = e.clientY - rect.top;
 
   // Find the clicked point
-  const clickedPoint = points.find((point) => {
-    const distance = Math.sqrt((x - point.x) ** 2 + (y - point.y) ** 2);
-    return distance <= 5;
-  });
+const clickedPoint = points.find((point) => {
+  const distance = Math.sqrt((x - point.x) ** 2 + (y - point.y) ** 2);
+  return distance <= 5;
+});
 
-  if (clickedPoint) {
-    clickedPoints.push(clickedPoint);
-    drawPoint(clickedPoint.x, clickedPoint.y, clickedPoint.color);
+if (clickedPoint) {
+  clickedPoints.push(clickedPoint);
+  drawPoint(clickedPoint.x, clickedPoint.y, clickedPoint.color);
 
-    if (clickedPoints.length === 2) {
-      if (clickedPoints[0].color === clickedPoints[1].color) {
-        // Connect points with a straight line using their respective color
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = clickedPoints[0].color;
-        ctx.beginPath();
-        ctx.moveTo(clickedPoints[0].x, clickedPoints[0].y);
-        ctx.lineTo(clickedPoints[1].x, clickedPoints[1].y);
-        ctx.stroke();
-        ctx.strokeStyle = "black"; // Reset the stroke style to black
+  if (clickedPoints.length === 2) {
+    if (clickedPoints[0].color === "red" && clickedPoints[1].color === "red") {
+      // Connect points with a curved line using their respective color
+      drawCurvedLine(clickedPoints[1].x, clickedPoints[1].y, 270, 130, clickedPoints[0].x, clickedPoints[0].y, clickedPoints[0].color );
+        red = 1;
+        console.log("red =", red); // Update red variable to 1
+    } else if (clickedPoints[0].color === "black" && clickedPoints[1].color === "black") {
+      // Connect points with a curved line using their respective color
+      drawCurvedLine(clickedPoints[1].x, clickedPoints[1].y, 280, 400, clickedPoints[0].x, clickedPoints[0].y, clickedPoints[0].color);
+        black = 1; // Update black variable to 1
+        console.log("black=", black);
       }
-      // canvas
       clickedPoints = [];
     }
   }
 });
+
+// Function to draw a curved line
+function drawCurvedLine(startX, startY, controlX, controlY, endX, endY, color) {
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(startX, startY);
+  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  ctx.stroke();
+}
 
 function roundRect(x, y, width, height, radius) {
   ctx.beginPath();
@@ -74,6 +86,7 @@ function roundRect(x, y, width, height, radius) {
   ctx.closePath();
 }
 
+// battery draw
 ctx.fillStyle = "black";
 roundRect(150, 200, 100, 160, 10);
 ctx.fill();
@@ -199,7 +212,6 @@ function batteryVoltageDisplay(voltage){
   let text = `Vₛ = ${voltage.toFixed(1)} V`
   ctx.fillText(text,20,320);
 }
-
 // Add a plus (+) symbol
 ctx.fillStyle = "black";
 ctx.fillRect(198, 210, 5, 15);
@@ -209,193 +221,139 @@ ctx.fillRect(193, 215, 15, 5);
 ctx.fillStyle = "white";
 ctx.fillRect(195, 345, 15, 5);
 
-canvas.addEventListener('click', function(event) {
-  // Get the click coordinates relative to the canvas
-  // console.log("mouse click");
-  const clickX = event.clientX - canvas.getBoundingClientRect().left;
-  const clickY = event.clientY - canvas.getBoundingClientRect().top;
-
-  // Check if the click is on the ending red point
-   if ((clickX >= 394) && (clickX <= 394 + 12) && (clickY >= 180) && (clickY <= 180 + 12)) {
-     // Draw a red line between the starting red point and ending red point
-     let colour = "red";
-     ctx.strokeStyle = colour;
-    //  console.log("mouse line red ");
-     ctx.lineWidth = 2;
-     ctx.beginPath();
-     ctx.moveTo(200, 186);
-     ctx.lineTo(398, 186);
-     ctx.stroke();
-     if(colour == 'red'){
-      console.log("red line");
-      red = 1;
-    }
-   }
-
-  if ( clickX >= 394 && clickX <= 394 + 12 && clickY >= 360 && clickY <= 360 + 12 ) {
-    // console.log("mouse line black");
-    let colour = "black"
-    ctx.strokeStyle = colour;
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(205, 367);
-    ctx.lineTo(403, 367);
-    ctx.stroke();
-    if(colour == 'black'){
-      console.log("black line");
-      black = 1;
-    }
-  }
-});
 
 ctx.strokeStyle = "black";
-ctx.lineWidth = 2;
+      ctx.lineWidth = 2;
 
-// Vertical lines
-ctx.beginPath();
-ctx.moveTo(400, 62);
-ctx.lineTo(400, 180);
-ctx.stroke();
+       // Vertical lines
+       ctx.beginPath();
+      ctx.moveTo(400, 62);
+      ctx.lineTo(400, 180);
+      ctx.stroke();
 
-ctx.beginPath();
-ctx.moveTo(400, 360);
-ctx.lineTo(400, 430);
-ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(400, 360);
+      ctx.lineTo(400, 430);
+      ctx.stroke();
 
-ctx.beginPath();
-ctx.moveTo(700, 62);
-ctx.lineTo(700, 271);
-ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(700, 62);
+      ctx.lineTo(700, 271);
+      ctx.stroke();
 
-ctx.beginPath();
-ctx.moveTo(700, 345);
-ctx.lineTo(700, 430);
-ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(700, 345);
+      ctx.lineTo(700, 430);
+      ctx.stroke();
 
-// Horizontal lines
-ctx.beginPath();
-ctx.moveTo(400, 430);
-ctx.lineTo(700, 430);
-ctx.stroke();
+      // Horizontal lines
+      ctx.beginPath();
+      ctx.moveTo(400, 430);
+      ctx.lineTo(700, 430);
+      ctx.stroke();
 
-ctx.beginPath();
-ctx.moveTo(520, 62);
-ctx.lineTo(400, 62);
-ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(520, 62);
+      ctx.lineTo(400, 62);
+      ctx.stroke();
 
-ctx.beginPath();
-ctx.moveTo(580, 62);
-ctx.lineTo(701, 62);
-ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(580, 62);
+      ctx.lineTo(701, 62);
+      ctx.stroke();
 
       
-//resistor
+      //resistor
       
-ctx.beginPath();
-ctx.moveTo(690, 340);
-ctx.lineTo(700, 346);
-ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(690, 340);
+      ctx.lineTo(700, 346);
+      ctx.stroke();
 
-ctx.beginPath();
-ctx.moveTo(690, 340);
-ctx.lineTo(710, 328);
-ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(690, 340);
+      ctx.lineTo(710, 328);
+      ctx.stroke();
       
-ctx.beginPath();
-ctx.moveTo(710, 328);
-ctx.lineTo(690, 316);
-ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(710, 328);
+      ctx.lineTo(690, 316);
+      ctx.stroke();
 
-ctx.beginPath();
-ctx.moveTo(690, 316);
-ctx.lineTo(710, 302);
-ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(690, 316);
+      ctx.lineTo(710, 302);
+      ctx.stroke();
       
-ctx.beginPath();
-ctx.moveTo(710, 302);
-ctx.lineTo(690, 290);
-ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(710, 302);
+      ctx.lineTo(690, 290);
+      ctx.stroke();
       
-ctx.beginPath();
-ctx.moveTo(690, 290);
-ctx.lineTo(710, 278);
-ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(690, 290);
+      ctx.lineTo(710, 278);
+      ctx.stroke();
       
-ctx.beginPath();
-ctx.moveTo(710, 278);
-ctx.lineTo(698, 271);
-ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(710, 278);
+      ctx.lineTo(698, 271);
+      ctx.stroke();
 
-// resistor end
+      // resistor end
 
-// ctx.beginPath();io
-// ctx.moveTo(705, 345);
-// ctx.lineTo(630, 345);
-// ctx.stroke();
+      fuse()
+
+      ctx.fillStyle = "white";
+      ctx.beginPath();
+      ctx.arc(700, 165, 25, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.stroke();
+
+      // Ammetre symbol naming
+      ctx.fillStyle = "black"
+      ctx.font = "bold small-caps 20px Arial";
+      ctx.textBaseline = "middle";
+      ctx.fillText("A", 693, 165)
       
-// ctx.beginPath();
-// ctx.moveTo(630, 345);
-// ctx.lineTo(630, 215);
-// ctx.stroke();
+      function fuse(){
+        // fuse full line
+        ctx.strokeStyle ="black";
+        ctx.beginPath();
+        ctx.moveTo(520, 62);
+        ctx.lineTo(580, 62);
+        ctx.stroke();
+      }
 
-// ctx.beginPath();
-// ctx.moveTo(700, 215);
-// ctx.lineTo(630, 215);
-// ctx.stroke();
+      function fusebreak(){
+        // fuse full line
+        ctx.strokeStyle = "white";
+        ctx.beginPath();
+        ctx.moveTo(520, 62);
+        ctx.lineTo(580, 62);
+        ctx.stroke();
+      }
 
-ctx.fillStyle = "white";
-ctx.beginPath();
-ctx.arc(700, 165, 25, 0, 2 * Math.PI);
-ctx.fill();
-ctx.stroke();
-
-// Ammetre symbol naming
-ctx.fillStyle = "black"
-ctx.font = "bold small-caps 20px Arial";
-ctx.textBaseline = "middle";
-ctx.fillText("A", 693, 165)
-
-
-fuse()
+      //ground
+      ctx.beginPath();  
+      ctx.moveTo(570, 450);
+      ctx.lineTo(540, 450);
+      ctx.stroke();
       
-function fuse(){
-  // fuse full line
-  ctx.strokeStyle ="black";
-  ctx.beginPath();
-  ctx.moveTo(520, 62);
-  ctx.lineTo(580, 62);
-  ctx.stroke();
-}
-
-function fusebreak(){
-  // fuse full line
-  ctx.strokeStyle = "white";
-  ctx.beginPath();
-  ctx.moveTo(520, 62);
-  ctx.lineTo(580, 62);
-  ctx.stroke();
-}
-
-//ground
-ctx.beginPath();  
-ctx.moveTo(570, 450);
-ctx.lineTo(540, 450);
-ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(565, 455);
+      ctx.lineTo(545, 455);
+      ctx.stroke();
       
-ctx.beginPath();
-ctx.moveTo(565, 455);
-ctx.lineTo(545, 455);
-ctx.stroke();
-      
-ctx.beginPath();
-ctx.moveTo(560, 460);
-ctx.lineTo(550, 460);
-ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(560, 460);
+      ctx.lineTo(550, 460);
+      ctx.stroke();
 
-ctx.beginPath();
-ctx.moveTo(555, 430);
-ctx.lineTo(555, 450);
-ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(555, 430);
+      ctx.lineTo(555, 450);
+      ctx.stroke();
 
 //Initialise system parameters here
 function varinit() {
@@ -417,7 +375,7 @@ function varinit() {
   $('#resistorSpinner').spinner("disable"); 
   $('#thresholdSpinner').spinner("disable"); 
   $("#threshold-btn, #simulate-btn").prop("disabled", true);
-  $("#message").text("Complete the circuit connection, Connect the terminals from battery to the circuit by clicking on the points(red - red and black to black)");
+  $("#message").text("Complete the circuit connection");
   $("#voltage, #resistance, #current, #threshold").text(0);
 
 }
@@ -479,10 +437,11 @@ function varchange() {
   $("#CsArea").spinner({ max: 1, min: 0.01, step: 0.0001 });
   $("#Ivalue").spinner({ max: 1, min: 0.01, step: 0.0001 });
 }
+
 function varupdate() {
   $("#voltageSpinner").spinner("value", $("#voltageSlider").slider("value")); //updating slider location with change in spinner(debug)
   $("#resistorSpinner").spinner("value", $("#resistorSlider").slider("value"));
-  $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
+$("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   volt = $("#voltageSpinner").spinner("value"); //Updating variables
   res = $("#resistorSpinner").spinner("value");
   thres = $("#thresholdSpinner").spinner("value");
@@ -516,7 +475,7 @@ function varupdate() {
   batteryVoltageDisplay(volt);
  };
 
-function checkConnection() {
+ function checkConnection() {
   // console.log("working check");
   if(red && black){
     // console.log("working red black");
@@ -549,7 +508,7 @@ function checkConnection() {
     }   
   }
 
-  
+
 function setThreshold() {
   if(simStat = 1)  {
     // console.log("working");
@@ -562,17 +521,17 @@ function setThreshold() {
     $("#message").text("Set the threshold current and click on simulate button");
     }
   }
-  
+
 function parametreSliderEnable() {
-  console.log("working");
-  $('#voltageSlider').slider("enable"); 
-  $('#voltageSpinner').spinner("enable");
-  $('#resistorSlider').slider("enable"); 
-  $('#resistorSpinner').spinner("enable"); 
-  $('#thresholdSlider').slider("disable"); 
-  $('#thresholdSpinner').spinner("disable"); 
-  $("#message").text("Vary the parameters and see the Result");
+    console.log("working");
+    $('#voltageSlider').slider("enable"); 
+    $('#voltageSpinner').spinner("enable");
+    $('#resistorSlider').slider("enable"); 
+    $('#resistorSpinner').spinner("enable"); 
+    $('#thresholdSlider').slider("disable"); 
+    $('#thresholdSpinner').spinner("disable"); 
+    $("#message").text("Vary the parameters and see the Result");
 }
- 
+
 
 window.addEventListener("load", varinit);

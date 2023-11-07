@@ -324,22 +324,13 @@
   /* gap: 1rem; */
 }
 
-.variables-sections{
+.variables-sections,
+.control-sections {
   padding: 50px 1rem 50px 1rem;
   /* border: 1px solid var(--clr-title-background);
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem; */
   padding-left: 40px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 1rem;
-}
-.control-sections {
-  padding: 55px 50px 50px 125px;
-  /* border: 1px solid var(--clr-title-background);
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem; */
-
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
