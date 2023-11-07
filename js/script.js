@@ -31,45 +31,29 @@ points.forEach((point) => {
 let clickedPoints = [];
 
 canvas.addEventListener("click", function (e) {
-  const rect = canvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+const rect = canvas.getBoundingClientRect();
+const x = e.clientX - rect.left;
+const y = e.clientY - rect.top;
 
   // Find the clicked point
-  const clickedPoint = points.find((point) => {
-    const distance = Math.sqrt((x - point.x) ** 2 + (y - point.y) ** 2);
-    return distance <= 5;
-  });
+const clickedPoint = points.find((point) => {
+  const distance = Math.sqrt((x - point.x) ** 2 + (y - point.y) ** 2);
+  return distance <= 5;
+});
 
-  if (clickedPoint) {
-    clickedPoints.push(clickedPoint);
-    drawPoint(clickedPoint.x, clickedPoint.y, clickedPoint.color);
+if (clickedPoint) {
+  clickedPoints.push(clickedPoint);
+  drawPoint(clickedPoint.x, clickedPoint.y, clickedPoint.color);
 
-    if (clickedPoints.length === 2) {
-      if (clickedPoints[0].color === "red" && clickedPoints[1].color === "red") {
-        // Connect points with a curved line using their respective color
-        drawCurvedLine(
-          clickedPoints[1].x,
-          clickedPoints[1].y,
-          270,
-          130,
-          clickedPoints[0].x,
-          clickedPoints[0].y,
-          clickedPoints[0].color
-        );
+  if (clickedPoints.length === 2) {
+    if (clickedPoints[0].color === "red" && clickedPoints[1].color === "red") {
+      // Connect points with a curved line using their respective color
+      drawCurvedLine(clickedPoints[1].x, clickedPoints[1].y, 270, 130, clickedPoints[0].x, clickedPoints[0].y, clickedPoints[0].color );
         red = 1;
         console.log("red =", red); // Update red variable to 1
-      } else if (clickedPoints[0].color === "black" && clickedPoints[1].color === "black") {
-        // Connect points with a curved line using their respective color
-        drawCurvedLine(
-          clickedPoints[1].x,
-          clickedPoints[1].y,
-          280,
-          400,
-          clickedPoints[0].x,
-          clickedPoints[0].y,
-          clickedPoints[0].color
-        );
+    } else if (clickedPoints[0].color === "black" && clickedPoints[1].color === "black") {
+      // Connect points with a curved line using their respective color
+      drawCurvedLine(clickedPoints[1].x, clickedPoints[1].y, 280, 400, clickedPoints[0].x, clickedPoints[0].y, clickedPoints[0].color);
         black = 1; // Update black variable to 1
         console.log("black=", black);
       }
