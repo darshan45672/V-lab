@@ -12,7 +12,7 @@ const points = [
   { x: 200, y: 185, color: 'red' },
   { x: 400, y: 185, color: 'red' },
   { x: 200, y: 366, color: 'black' },
-  { x: 400, y: 360, color: 'black' },
+  { x: 400, y: 366, color: 'black' },
 ];
 
 function drawPoint(x, y, color) {
