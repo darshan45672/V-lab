@@ -1,6 +1,5 @@
 var simStat = 0;
 var thres = 0;
-let check = 1;
 
 var red = 0;
 var black = 0;
