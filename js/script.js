@@ -346,6 +346,8 @@ function fuse(){
   ctx.moveTo(520, 62);
   ctx.lineTo(580, 62);
   ctx.stroke();
+  ctx.fillStyle = "white"
+  ctx.fillRect(500,110,110,25)
 }
 
 function fusebreak(){
