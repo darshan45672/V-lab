@@ -31,36 +31,58 @@ points.forEach((point) => {
 let clickedPoints = [];
 
 canvas.addEventListener("click", function (e) {
-const rect = canvas.getBoundingClientRect();
-const x = e.clientX - rect.left;
-const y = e.clientY - rect.top;
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
 
   // Find the clicked point
-const clickedPoint = points.find((point) => {
-  const distance = Math.sqrt((x - point.x) ** 2 + (y - point.y) ** 2);
-  return distance <= 5;
-});
+  const clickedPoint = points.find((point) => {
+    const distance = Math.sqrt((x - point.x) ** 2 + (y - point.y) ** 2);
+    return distance <= 5;
+  });
 
-if (clickedPoint) {
-  clickedPoints.push(clickedPoint);
-  drawPoint(clickedPoint.x, clickedPoint.y, clickedPoint.color);
+  if (clickedPoint) {
+    if (clickedPoints.length === 0 || !isSameColorPoint(clickedPoint, clickedPoints[0])) {
+      // If no point is selected or different color point is selected, add it to clickedPoints
+      clickedPoints.push(clickedPoint);
+      drawPoint(clickedPoint.x, clickedPoint.y, clickedPoint.color);
 
-  if (clickedPoints.length === 2) {
-    if (clickedPoints[0].color === "red" && clickedPoints[1].color === "red") {
-      // Connect points with a curved line using their respective color
-      drawCurvedLine(clickedPoints[1].x, clickedPoints[1].y, 270, 130, clickedPoints[0].x, clickedPoints[0].y, clickedPoints[0].color );
-        red = 1;
-        console.log("red =", red); // Update red variable to 1
-    } else if (clickedPoints[0].color === "black" && clickedPoints[1].color === "black") {
-      // Connect points with a curved line using their respective color
-      drawCurvedLine(clickedPoints[1].x, clickedPoints[1].y, 280, 400, clickedPoints[0].x, clickedPoints[0].y, clickedPoints[0].color);
-        black = 1; // Update black variable to 1
-        console.log("black=", black);
+      if (clickedPoints.length === 2) {
+        if (clickedPoints[0].color === "red" && clickedPoints[1].color === "red") {
+          // Connect points with a curved line using their respective color
+          drawCurvedLine(
+            clickedPoints[1].x,
+            clickedPoints[1].y,
+            270,
+            130,
+            clickedPoints[0].x,
+            clickedPoints[0].y,
+            clickedPoints[0].color
+          );
+          red = 1; // Update red variable to 1
+        } else if (clickedPoints[0].color === "black" && clickedPoints[1].color === "black") {
+          // Connect points with a curved line using their respective color
+          drawCurvedLine(
+            clickedPoints[1].x,
+            clickedPoints[1].y,
+            280,
+            400,
+            clickedPoints[0].x,
+            clickedPoints[0].y,
+            clickedPoints[0].color
+          );
+          black = 1; // Update black variable to 1
+        }
+        clickedPoints = [];
       }
-      clickedPoints = [];
     }
   }
 });
+
+function isSameColorPoint(point1, point2) {
+  return point1.color === point2.color && point1.x === point2.x && point1.y === point2.y;
+}
+
 
 // Function to draw a curved line
 function drawCurvedLine(startX, startY, controlX, controlY, endX, endY, color) {
@@ -69,7 +91,7 @@ function drawCurvedLine(startX, startY, controlX, controlY, endX, endY, color) {
   ctx.beginPath();
   ctx.moveTo(startX, startY);
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
-  ctx.stroke();
+  ctx.stroke();
 }
 
 function roundRect(x, y, width, height, radius) {
@@ -169,13 +191,14 @@ ctx.fill();
 
 // heading note
 ctx.fillStyle = "black"
-ctx.font = "25px bold Arial";
+ctx.font = "20px bold Arial";
 let text = "Note:"
-ctx.fillText(text,10,20);
+ctx.fillText(text,10,490);
 ctx.fillStyle = "black";
-ctx.font = "20px Arial";
+ctx.font = "18px Arial";
 text = "Resistance of Ammeter is assumed as 0"
-ctx.fillText(text,70,21);
+ctx.fillText(text,60,491);
+
 
 function fuseThresholdDisplay(threshold){
   ctx.fillStyle = "white"
@@ -223,137 +246,144 @@ ctx.fillRect(195, 345, 15, 5);
 
 
 ctx.strokeStyle = "black";
-      ctx.lineWidth = 2;
+ctx.lineWidth = 2;
 
-       // Vertical lines
-       ctx.beginPath();
-      ctx.moveTo(400, 62);
-      ctx.lineTo(400, 180);
-      ctx.stroke();
+// Vertical lines
+ctx.beginPath();
+ctx.moveTo(400, 62);
+ctx.lineTo(400, 180);
+ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(400, 360);
-      ctx.lineTo(400, 430);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(400, 360);
+ctx.lineTo(400, 430);
+ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(700, 62);
-      ctx.lineTo(700, 271);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(700, 62);
+ctx.lineTo(700, 271);
+ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(700, 345);
-      ctx.lineTo(700, 430);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(700, 345);
+ctx.lineTo(700, 430);
+ctx.stroke();
 
-      // Horizontal lines
-      ctx.beginPath();
-      ctx.moveTo(400, 430);
-      ctx.lineTo(700, 430);
-      ctx.stroke();
+// Horizontal lines
+ctx.beginPath();
+ctx.moveTo(400, 430);
+ctx.lineTo(700, 430);
+ctx.stroke();
 
       ctx.beginPath();
       ctx.moveTo(520, 62);
       ctx.lineTo(400, 62);
       ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(580, 62);
-      ctx.lineTo(701, 62);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(580, 62);
+ctx.lineTo(701, 62);
+ctx.stroke();
 
       
-      //resistor
+//resistor
       
-      ctx.beginPath();
-      ctx.moveTo(690, 340);
-      ctx.lineTo(700, 346);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(690, 340);
+ctx.lineTo(700, 346);
+ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(690, 340);
-      ctx.lineTo(710, 328);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(690, 340);
+ctx.lineTo(710, 328);
+ctx.stroke();
       
-      ctx.beginPath();
-      ctx.moveTo(710, 328);
-      ctx.lineTo(690, 316);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(710, 328);
+ctx.lineTo(690, 316);
+ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(690, 316);
-      ctx.lineTo(710, 302);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(690, 316);
+ctx.lineTo(710, 302);
+ctx.stroke();
       
-      ctx.beginPath();
-      ctx.moveTo(710, 302);
-      ctx.lineTo(690, 290);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(710, 302);
+ctx.lineTo(690, 290);
+ctx.stroke();
       
-      ctx.beginPath();
-      ctx.moveTo(690, 290);
-      ctx.lineTo(710, 278);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(690, 290);
+ctx.lineTo(710, 278);
+ctx.stroke();
       
-      ctx.beginPath();
-      ctx.moveTo(710, 278);
-      ctx.lineTo(698, 271);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(710, 278);
+ctx.lineTo(698, 271);
+ctx.stroke();
 
-      // resistor end
-
-      fuse()
-
-      ctx.fillStyle = "white";
-      ctx.beginPath();
-      ctx.arc(700, 165, 25, 0, 2 * Math.PI);
-      ctx.fill();
-      ctx.stroke();
-
-      // Ammetre symbol naming
-      ctx.fillStyle = "black"
-      ctx.font = "bold small-caps 20px Arial";
-      ctx.textBaseline = "middle";
-      ctx.fillText("A", 693, 165)
+// resistor end
       
-      function fuse(){
-        // fuse full line
-        ctx.strokeStyle ="black";
-        ctx.beginPath();
-        ctx.moveTo(520, 62);
-        ctx.lineTo(580, 62);
-        ctx.stroke();
-      }
 
-      function fusebreak(){
-        // fuse full line
-        ctx.strokeStyle = "white";
-        ctx.beginPath();
-        ctx.moveTo(520, 62);
-        ctx.lineTo(580, 62);
-        ctx.stroke();
-      }
+fuse()
 
-      //ground
-      ctx.beginPath();  
-      ctx.moveTo(570, 450);
-      ctx.lineTo(540, 450);
-      ctx.stroke();
+ctx.fillStyle = "white";
+ctx.beginPath();
+ctx.arc(700, 165, 25, 0, 2 * Math.PI);
+ctx.fill();
+ctx.stroke();
+
+// Ammetre symbol naming
+ctx.fillStyle = "black"
+ctx.font = "bold small-caps 20px Arial";
+ctx.textBaseline = "middle";
+ctx.fillText("A", 693, 165)
       
-      ctx.beginPath();
-      ctx.moveTo(565, 455);
-      ctx.lineTo(545, 455);
-      ctx.stroke();
-      
-      ctx.beginPath();
-      ctx.moveTo(560, 460);
-      ctx.lineTo(550, 460);
-      ctx.stroke();
+function fuse(){
+  // fuse full line
+  ctx.strokeStyle ="black";
+  ctx.beginPath();
+  ctx.moveTo(520, 62);
+  ctx.lineTo(580, 62);
+  ctx.stroke();
+  ctx.fillStyle = "white"
+  ctx.fillRect(500,110,110,25)
+}
 
-      ctx.beginPath();
-      ctx.moveTo(555, 430);
-      ctx.lineTo(555, 450);
-      ctx.stroke();
+function fusebreak(){
+  // fuse full line
+  ctx.strokeStyle = "white";
+  ctx.beginPath();
+  ctx.moveTo(520, 62);
+  ctx.lineTo(580, 62);
+  ctx.stroke();
+  ctx.fillStyle = "white"
+  ctx.fillRect(500,110,110,25)
+  ctx.fillStyle = "black"
+  ctx.fillText("fuse breaks ",500,125);
+}
+
+//ground
+ctx.beginPath();  
+ctx.moveTo(570, 450);
+ctx.lineTo(540, 450);
+ctx.stroke();
+      
+ctx.beginPath();
+ctx.moveTo(565, 455);
+ctx.lineTo(545, 455);
+ctx.stroke();
+      
+ctx.beginPath();
+ctx.moveTo(560, 460);
+ctx.lineTo(550, 460);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(555, 430);
+ctx.lineTo(555, 450);
+ctx.stroke();
 
 //Initialise system parameters here
 function varinit() {
@@ -375,9 +405,18 @@ function varinit() {
   $('#resistorSpinner').spinner("disable"); 
   $('#thresholdSpinner').spinner("disable"); 
   $("#threshold-btn, #simulate-btn").prop("disabled", true);
+  text = "Complete the circuit connection"
+  displayInstruction(text);
   $("#message").text("Complete the circuit connection");
   $("#voltage, #resistance, #current, #threshold").text(0);
 
+}
+function displayInstruction(text) {
+  ctx.fillStyle = "white";
+  ctx.fillRect(10,1,480,25)
+  ctx.fillStyle = "black"
+  ctx.font = "20px Arial";
+  ctx.fillText(text,10,12);
 }
 
 function varchange() {
@@ -453,6 +492,7 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   }else{
     if ((volt/res)>=thres) {
       fusebreak();
+      // alert("Fuse is broken as the threshold current is exceeded")
       $('#current').text(0);
       $('#resultMessage').text("The fuse breaks as the maximum allowable current is exceeded");
     }
@@ -488,6 +528,8 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
     $('#thresholdSpinner').spinner("enable"); 
     $("#check-btn").prop("disabled", true);
     $("#message").text("Set the threshold current and click on simulate button");
+    text = "Set the threshold current and click on simulate button"
+    displayInstruction(text);
     $("#threshold-btn, #simulate-btn").prop("disabled", false);
     varupdate();
   }
@@ -531,6 +573,7 @@ function parametreSliderEnable() {
     $('#thresholdSlider').slider("disable"); 
     $('#thresholdSpinner').spinner("disable"); 
     $("#message").text("Vary the parameters and see the Result");
+    displayInstruction("Vary the parameters and see the Result");
 }
 
 
