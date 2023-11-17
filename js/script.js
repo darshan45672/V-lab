@@ -7,11 +7,13 @@ var black = 0;
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
+var audio = document.getElementById("myAudio");
+
 const points = [
   { x: 200, y: 185, color: 'red' },
   { x: 400, y: 185, color: 'red' },
   { x: 200, y: 366, color: 'black' },
-  { x: 400, y: 366, color: 'black' },
+  { x: 400, y: 364, color: 'black' },
 ];
 
 function drawPoint(x, y, color) {
@@ -132,14 +134,14 @@ roundRect(195, 360, 12, 12, 6);
 ctx.fill();
 
 // ending red line
-ctx.fillStyle = "red";
-roundRect(394, 180, 12, 12, 6);
-ctx.fill();
+// ctx.fillStyle = "red";
+// roundRect(394,180, 12, 12, 6);
+// ctx.fill();
 
 // ending black line
-ctx.fillStyle = "black";
-roundRect(394, 360, 12, 12, 6);
-ctx.fill();
+// ctx.fillStyle = "black";
+// roundRect(394, 360, 12, 12, 6);
+// ctx.fill();
 
 ctx.strokeStyle = "black";
 ctx.lineWidth = 2;
@@ -268,20 +270,26 @@ ctx.moveTo(700, 345);
 ctx.lineTo(700, 430);
 ctx.stroke();
 
+
 // Horizontal lines
 ctx.beginPath();
 ctx.moveTo(400, 430);
-ctx.lineTo(700, 430);
+ctx.lineTo(550, 430);
 ctx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(520, 62);
-      ctx.lineTo(400, 62);
-      ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(520, 62);
+ctx.lineTo(400, 62);
+ctx.stroke();
 
 ctx.beginPath();
 ctx.moveTo(580, 62);
 ctx.lineTo(701, 62);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(550, 430);
+ctx.lineTo(700, 430);
 ctx.stroke();
 
       
@@ -343,24 +351,98 @@ function fuse(){
   // fuse full line
   ctx.strokeStyle ="black";
   ctx.beginPath();
-  ctx.moveTo(520, 62);
-  ctx.lineTo(580, 62);
+  ctx.moveTo(520, 62); // Start point
+  ctx.quadraticCurveTo(535, 50, 550, 62); 
   ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(550, 62); // Start point
+  ctx.quadraticCurveTo(565, 80, 580, 62); 
+  ctx.stroke();
+
   ctx.fillStyle = "white"
-  ctx.fillRect(500,110,110,25)
+  ctx.fillRect(500,110,170,35)
+}
+
+function greenWire() {
+
+  ctx.strokeStyle ="#00ff66";
+  ctx.beginPath();
+  ctx.moveTo(700, 62);
+  ctx.lineTo(700, 139);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(700, 190);
+  ctx.lineTo(700, 271);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(700, 345);
+  ctx.lineTo(700, 430);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(580, 62);
+  ctx.lineTo(701, 62);
+  ctx.stroke();
+  
+  ctx.beginPath();
+  ctx.moveTo(560, 430);
+  ctx.lineTo(700, 430);
+  ctx.stroke();
 }
 
 function fusebreak(){
   // fuse full line
+  ctx.lineWidth = 15;
   ctx.strokeStyle = "white";
   ctx.beginPath();
-  ctx.moveTo(520, 62);
-  ctx.lineTo(580, 62);
+  ctx.moveTo(550, 55);
+  ctx.lineTo(550, 70);
   ctx.stroke();
+  
+  ctx.lineWidth = 2;
   ctx.fillStyle = "white"
   ctx.fillRect(500,110,110,25)
   ctx.fillStyle = "black"
   ctx.fillText("fuse breaks ",500,125);
+}
+
+function blackWire(){
+  ctx.strokeStyle = "black";
+  ctx.beginPath();
+  ctx.moveTo(700, 62);
+  ctx.lineTo(700, 139);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(700, 190);
+  ctx.lineTo(700, 271);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(700, 345);
+  ctx.lineTo(700, 430);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(580, 62);
+  ctx.lineTo(701, 62);
+  ctx.stroke();
+  
+  ctx.beginPath();
+  ctx.moveTo(560, 430);
+  ctx.lineTo(700, 430);
+  ctx.stroke();
+}
+
+function playAudio() {
+  audio.play();
+}
+
+function pauseAudio() {
+  audio.pause();
 }
 
 //ground
@@ -404,17 +486,16 @@ function varinit() {
   $('#resistorSpinner').spinner("disable"); 
   $('#thresholdSpinner').spinner("disable"); 
   $("#threshold-btn, #simulate-btn").prop("disabled", true);
-  text = "Complete the circuit connection"
+  text = "Step 1: Complete the circuit connection"
   displayInstruction(text);
   $("#message").text("Complete the circuit connection");
   $("#voltage, #resistance, #current, #threshold").text(0);
-
 }
 function displayInstruction(text) {
   ctx.fillStyle = "white";
-  ctx.fillRect(10,1,480,25)
+  ctx.fillRect(10,1,550,20)
   ctx.fillStyle = "black"
-  ctx.font = "20px Arial";
+  ctx.font = "18px Arial";
   ctx.fillText(text,10,12);
 }
 
@@ -486,17 +567,22 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
   
   if (res === 0){
     fuse();
+    pauseAudio()
+   
     $('#current').text(0);
     $('#resultMessage').text("");
   }else{
     if ((volt/res)>=thres) {
+      playAudio();
       fusebreak();
+      blackWire();
       // alert("Fuse is broken as the threshold current is exceeded")
       $('#current').text(0);
       $('#resultMessage').text("The fuse breaks as the maximum allowable current is exceeded");
     }
     else{
       fuse();
+      pauseAudio()
       $('#current').text((volt / res).toFixed(4));
       $('#resultMessage').text("");
     }
@@ -510,6 +596,7 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
     currentThroughAmmeterDisplay(0);    
   } else {
     currentThroughAmmeterDisplay((volt/res))
+    greenWire();
   }
   batteryVoltageDisplay(volt);
  };
@@ -527,7 +614,7 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
     $('#thresholdSpinner').spinner("enable"); 
     $("#check-btn").prop("disabled", true);
     $("#message").text("Set the threshold current and click on simulate button");
-    text = "Set the threshold current and click on simulate button"
+    text = "Step 2: Set the threshold current and click on simulate button"
     displayInstruction(text);
     $("#threshold-btn, #simulate-btn").prop("disabled", false);
     varupdate();
@@ -572,7 +659,7 @@ function parametreSliderEnable() {
     $('#thresholdSlider').slider("disable"); 
     $('#thresholdSpinner').spinner("disable"); 
     $("#message").text("Vary the parameters and see the Result");
-    displayInstruction("Vary the parameters and see the Result");
+    displayInstruction("Step 3:Vary the parameters and see the Result");
 }
 
 
