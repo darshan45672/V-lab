@@ -161,7 +161,7 @@ ctx.fillText("Resistor", 715, 276)
 // Ammetre naming
 ctx.font = "bold small-caps 20px Arial";
 ctx.textBaseline = "middle";
-ctx.fillText("Ammetre", 570, 165)
+ctx.fillText("Ammeter", 570, 165)
 
 // battery naming
 ctx.font = "bold small-caps 20px Arial";
