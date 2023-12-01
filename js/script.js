@@ -1,7 +1,5 @@
 var simStat = 0;
 var thres = 0;
-let check = 1;
-
 var red = 0;
 var black = 0;
 
@@ -236,6 +234,33 @@ function batteryVoltageDisplay(voltage){
   ctx.font = "20px Arial";
   let text = `Vₛ = ${voltage.toFixed(1)} V`
   ctx.fillText(text,20,320);
+}
+
+function connectLive(){
+  ctx.fillStyle = "white"
+  ctx.fillRect(265,200,160,25)
+  ctx.fillStyle = "black"
+  ctx.font = "20px Arial";
+  ctx.fillText("connect live wire ",270,220);
+  setTimeout(clearLive,3000);
+}
+
+function connectNeutral() {
+  ctx.fillStyle = "white"
+  ctx.fillRect(265,300,190,25)
+  ctx.fillStyle = "black"
+  ctx.font = "20px Arial";
+  ctx.fillText("connect neutral wire ",270,320);
+  setTimeout(clearNeutral,3000)
+}
+function clearLive() {
+  ctx.fillStyle = "white"
+  ctx.fillRect(265,198,160,30);
+}
+
+function clearNeutral() {
+  ctx.fillStyle = "white"
+  ctx.fillRect(265,300,190,30)
 }
 // Add a plus (+) symbol
 ctx.fillStyle = "black";
@@ -491,6 +516,8 @@ function varinit() {
   displayInstruction(text);
   $("#message").text("Complete the circuit connection");
   $("#voltage, #resistance, #current, #threshold").text(0);
+  clearLive()
+  clearNeutral()
 }
 function displayInstruction(text) {
   ctx.fillStyle = "white";
@@ -624,14 +651,18 @@ $("#thresholdSpinner").spinner("value", $("#thresholdSlider").slider("value"));
     if(red == 0 ){
       if(black == 0){
         alert('complete the circuit connection')
+        connectLive()
+        connectNeutral()
         return;
       }else{
         alert('connect live wire')
+        connectLive()
         console.log("live wire");
       }
     }
     if(black == 0){
         alert("connect neutral wire")
+        connectNeutral()
         console.log("neutral wire");
       }
     }   
