@@ -258,6 +258,15 @@ function clearLive() {
   ctx.fillRect(265,198,160,30);
 }
 
+function fusebreakDisplay(){
+  ctx.fillStyle = "white"
+  ctx.fillRect(25,70,260,50)
+  ctx.fillStyle = "black"
+  ctx.font = "40px Arial";
+  ctx.fillText("Fuse Breaks!!",27,110);
+
+}
+
 function clearNeutral() {
   ctx.fillStyle = "white"
   ctx.fillRect(265,300,190,30)
@@ -375,6 +384,9 @@ ctx.fillText("A", 693, 165)
       
 function fuse(){
   // fuse full line
+  ctx.fillStyle = "white"
+  ctx.fillRect(25,70,260,55)
+  
   ctx.strokeStyle ="black";
   ctx.beginPath();
   ctx.moveTo(520, 62); // Start point
@@ -421,6 +433,12 @@ function greenWire() {
 
 function fusebreak(){
   // fuse full line
+  ctx.fillStyle = "white"
+  ctx.fillRect(25,70,260,55)
+  ctx.fillStyle = "black"
+  ctx.font = "40px Arial";
+  ctx.fillText("Fuse Breaks!!",27,110);
+
   ctx.lineWidth = 15;
   ctx.strokeStyle = "white";
   ctx.beginPath();
@@ -431,8 +449,9 @@ function fusebreak(){
   ctx.lineWidth = 2;
   ctx.fillStyle = "white"
   ctx.fillRect(500,110,110,25)
+  ctx.font = "20px Arial"
   ctx.fillStyle = "black"
-  ctx.fillText("fuse breaks ",500,125);
+  ctx.fillText("fuse breaks ",502,125);
 }
 
 function blackWire(){
